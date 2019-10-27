@@ -1,1 +1,1 @@
-INSERT INTO defaultdb.users (id,picture,cv_title, first_name, last_name, age,phone_number,address,linkedin,mail,presentation,skill,hobby,language,formations,experiences) VALUES (1,'Photo juste la','CV de BG', 'Paul', 'Harrohide', 20, 06313475,'9 villa Carman' ,'ilikfjdsh','mail','presentation','skill','hobby','language','formations','experiences');
+INSERT INTO defaultdb.patients (id,first_name, last_name, age,phone_number,address) VALUES (1,'Pol', 'Harrohide', 20, 06313475,'9 villa Carman');
