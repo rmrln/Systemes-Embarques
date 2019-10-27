@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>CV Creator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://fontawesome.com/v4.7.0/assets/font-awesome/css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</head>
+
+<script type="text/javascript" th:src="@{/js/readURL.js}"></script>
+<script>
+    function maxL(){
+        var nbre= document.getElementById("phoneNumber").value;
+        var lgh= nbre.length;
+        if (lgh >600) {
+            alert('Votre texte ne doit pas dépasser 600 caractères!');
+        }
+    }
+</script>
+
+<body class="bodyNew">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand navTitle" href="/index">CV Creator</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/index">Home </a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/new">Création <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/list">Liste des CVs</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="newTitle">La création</h2>
+
+    <form method="post" th:action="@{/new}" th:object="${user}" enctype="multipart/form-data">
+
+            <div class="row">
+                <h2 class="subTitle">Le titre</h2>
+                <div class="col py-3 px-lg-5">
+
+                    <input type="text" th:field="*{cvTitle}" class="form-control" id="cvTitle"
+                           aria-describedby="firstNameHelp">
+                </div>
+            </div>
+        <div class="row">
+            <div class="col py-3 px-lg-5">
+                <div class="mb-4" align="center">
+                    <div class="d-flex justify-content-center">
+                        <div class="row">
+                            <div class="col-sm">
+                                <img id="blah" class="roundPhotoId"
+                                     src="http://www.samuelduplaix.com/wp-content/uploads/2015/01/Icone-appareil-photo.jpg"
+                                     alt="your image"/>
+                            </div>
+                            <div class="col-sm d-flex align-items-center">
+                                <div class="upload-btn-wrapper">
+                                    <button class="btn">Ajouter une photo</button>
+                                    <input type="file" name="file" onchange="readURL(this);" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="container">
+                    <label class="formTitle">CONTACT</label>
+                    <div class="form-group">
+                        <label for="phoneNumber">Téléphone</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"
+                                                                                    aria-hidden="true"></i></span>
+                            </div>
+                            <input type="number" th:field="*{phoneNumber}" class="form-control" id="phoneNumber"
+                                   aria-describedby="firstNameHelp"
+                                   onkeyup="maxL()" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ageInput">E-mail</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon2"><i class="fa fa-envelope-o"
+                                                                                    aria-hidden="true"></i></span>
+                            </div>
+                            <input type="email" th:field="*{mail}" class="form-control" id="mail"
+                                   aria-describedby="lastNameHelp" required>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="ageInput">Adresse</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3"><i class="fa fa-home"
+                                                                                    aria-hidden="true"></i></span>
+                            </div>
+                            <input type="text" th:field="*{address}" class="form-control" id="address"
+                                   aria-describedby="ageHelp" required>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="ageInput">Linkedin</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon4"><i class="fa fa-linkedin"
+                                                                                    aria-hidden="true"></i></span>
+                            </div>
+                            <input type="text" th:field="*{linkedin}" class="form-control" id="linkedin"
+                                   aria-describedby="ageHelp" required>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="container">
+                    <label class="formTitle">LANGUES</label>
+                    <div class="form-group">
+                        <textarea class="form-control" th:field="*{language}" id="languageTextarea" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <label class="formTitle">COMPETENCES</label>
+                    <div class="form-group">
+                        <textarea class="form-control" th:field="*{skill}" id="skill" rows="3" required></textarea>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="col py-3 px-lg-5">
+                <div class="container">
+                    <div class="form-group">
+                        <label for="firstName">Prénom</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon5"><i class="fa fa-user"
+                                                                                    aria-hidden="true"></i></span>
+                            </div>
+                            <input type="text" th:field="*{firstName}" class="form-control" id="firstName"
+                                   aria-describedby="firstNameHelp" required>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Nom</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon6"><i class="fa fa-user"
+                                                                                    aria-hidden="true"></i></span>
+                            </div>
+                            <input type="text" th:field="*{lastName}" class="form-control" id="lastName"
+                                   aria-describedby="lastNameHelp" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ageInput">Age</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon7"><i class="fa fa-user"
+                                                                                    aria-hidden="true"></i></span>
+                            </div>
+                            <input type="text" th:field="*{age}" class="form-control" id="ageInput"
+                                   aria-describedby="ageHelp" required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="container">
+                    <label class="formTitle">DESCRIPTION</label>
+                    <div class="form-group">
+                        <textarea class="form-control" th:field="*{presentation}" id="presentation" rows="3" required></textarea>
+                    </div>
+                </div>
+
+
+                <div class="container">
+                    <label class="formTitle">FORMATIONS</label>
+                    <div class="form-group">
+                        <textarea class="form-control" th:field="*{formations}" id="formations" rows="3" required></textarea>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <label class="formTitle">EXPERIENCES</label>
+                    <div class="form-group">
+                        <textarea class="form-control" th:field="*{experiences}" id="experiences" rows="3" required></textarea>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <label class="formTitle">CENTRES D'INTERETS</label>
+                    <div class="form-group">
+                        <textarea class="form-control" th:field="*{hobby}" id="hobby" rows="3" required></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="container" align="center">
+                <button type="submit" class="btn btn-light">Ajouter</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+
+</html>
