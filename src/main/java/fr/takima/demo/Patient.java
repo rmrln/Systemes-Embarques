@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "patients")
-public class User {
+public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

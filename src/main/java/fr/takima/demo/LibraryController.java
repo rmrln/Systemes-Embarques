@@ -24,24 +24,23 @@ import java.util.*;
 @Controller
 public class LibraryController {
 
-    private final UserDAO userDAO;
+    private final PatientDAO patientDAO;
     //Save the uploaded file to this folder
     private static String UPLOADED_FOLDER = "../CV-Project/uploads/";
 
-    public LibraryController(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public LibraryController(PatientDAO patientDAO) {
+        this.patientDAO = patientDAO;
     }
 
     @GetMapping
     public String homePage(Model m) {
-        //m.addAttribute("users", userDAO.findAll());
         return "index";
     }
 
 
     @GetMapping("/medecin")
     public String medecinPage(Model m){
-        m.addAttribute("patients", userDAO.findAll());
+        m.addAttribute("patients", patientDAO.findAll());
         return "medecin";
     }
 
@@ -64,29 +63,29 @@ public class LibraryController {
 
 
     @GetMapping("/delete/{id}")
-    public RedirectView deleteUser(@ModelAttribute User user, RedirectAttributes attrs) {
+    public RedirectView deletePatient(@ModelAttribute Patient patient, RedirectAttributes attrs) {
         attrs.addFlashAttribute("message", "CV supprimé avec succès");
-        userDAO.deleteById(user.getId());
+        patientDAO.deleteById(patient.getId());
         return new RedirectView("/list");
     }
 
     @GetMapping("/consult/{id}")
-    public String consultCV(Model m,@PathVariable Long id, User user) {
-        Optional str = userDAO.findById(id);
+    public String consultPatient(Model m,@PathVariable Long id, Patient patient) {
+        Optional str = patientDAO.findById(id);
         if(str.isPresent()){
-            m.addAttribute("user",userDAO.findById(id).get());
+            m.addAttribute("patient",patientDAO.findById(id).get());
         }
         return "consult";
     }
 
     @GetMapping("/modif/{id}")
-    public String viewCV(Model m,@PathVariable Long id){
-        m.addAttribute("user",userDAO.findById(id));
+    public String viewPatient(Model m,@PathVariable Long id){
+        m.addAttribute("patient",patientDAO.findById(id));
         return "modif";
     }
 
     @PostMapping("/modif")
-    public RedirectView updateUser(@ModelAttribute User user,@RequestParam("file") MultipartFile file, RedirectAttributes attrs) {
+    public RedirectView updatePatient(@ModelAttribute Patient patient,@RequestParam("file") MultipartFile file, RedirectAttributes attrs) {
 
         try {
 
@@ -108,7 +107,7 @@ public class LibraryController {
         String pathModif = "../../../../uploads/";
         String photo = pathModif + file.getOriginalFilename();
 
-        userDAO.save(user);
-        return new RedirectView("/modif/"+user.getId());
+        patientDAO.save(patient);
+        return new RedirectView("/modif/"+patient.getId());
     }
 }
