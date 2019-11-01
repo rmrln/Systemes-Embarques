@@ -27,18 +27,46 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="/index">Home </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/medecin">Médecin </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/famille">Famille </a>
+            <li class="nav-item active">
+                <a class="nav-link" href="/famille">Famille <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
 </nav>
+
+
+<div class="container">
+    <div class="intro-text">
+        <table class="table table-striped table-dark">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="membreFamille : ${membres}">
+                <td scope="row" th:text="${membreFamille.firstName}"></td>
+                <td th:text="${membreFamille.lastName}"></td>
+                <td th:text="${membreFamille.age}"></td>
+                <td align="center">
+                    <a th:href="'/modif/membre/' + ${membreFamille.id}" class="btn btn-primary">Modifier</a>
+                    <a th:href="'/temperature/membre/' + ${membreFamille.id}" class="btn btn-success">Temperatures</a>
+                    <a th:href="'/delete/membre/' + ${membreFamille.id}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 

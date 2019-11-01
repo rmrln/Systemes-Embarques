@@ -29,10 +29,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item ">
                 <a class="nav-link" href="/index">Home </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/medecin">Médecin </a>
             </li>
             <li class="nav-item">
@@ -50,19 +50,17 @@
                 <tr>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
-                    <th scope="col">Age</th>
                     <th scope="col">Options</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="patient : ${patients}">
-                    <td scope="row" th:text="${patient.firstName}"></td>
-                    <td th:text="${patient.lastName}"></td>
-                    <td th:text="${patient.age}"></td>
+                <tr th:each="medecin : ${medecins}">
+                    <td scope="row" th:text="${medecin.firstName}"></td>
+                    <td th:text="${medecin.lastName}"></td>
                     <td align="center">
-                        <a th:href="'/modif/' + ${patient.id}" class="btn btn-primary">Modifier</a>
-                        <a th:href="'/consult/' + ${patient.id}" class="btn btn-success">Consulter</a>
-                        <a th:href="'/delete/' + ${patient.id}" class="btn btn-danger">Delete</a>
+                        <a th:href="'/modif/' + ${medecin.id}" class="btn btn-primary">Modifier</a>
+                        <a th:href="'/consult/' + ${medecin.id}" class="btn btn-success">Consulter</a>
+                        <a th:href="'/delete/' + ${medecin.id}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 </tbody>
