@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Températures</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://fontawesome.com/v4.7.0/assets/font-awesome/css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand navTitle" href="/index">Températures</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/index">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/medecin">Médecins </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/famille">Famille </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<body>
+
+<div class="container">
+    <div class="intro-text">
+        <table class="table table-striped table-dark">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Température</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="temperature : ${temperatures}">
+                <td scope="row" th:text="${temperature.date}"></td>
+                <td th:text="${temperature.temperature}"></td>
+                <td align="center">
+                    <a th:href="'/delete/temperature/' + ${temperature.id}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Plugin JavaScript -->
+<script th:src="@{/js/jquery.easing.min.js}"></script>
+
+<!-- Contact form JavaScript -->
+<script th:src="@{/js/jqBootstrapValidation.js}"></script>
+<script th:src="@{/js/contact_me.js}"></script>
+
+<!-- Custom scripts for this template -->
+<script th:src="@{/js/agency.min.js}"></script>
+</html>

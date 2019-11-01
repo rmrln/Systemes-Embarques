@@ -1,1 +1,3 @@
-INSERT INTO defaultdb.patients (id,first_name, last_name, age,phone_number,address) VALUES (1,'Pol', 'Harrohide', 20, 06313475,'9 villa Carman');
+INSERT INTO defaultdb.medecins (id, first_name, last_name) VALUES (1,'Jean', 'Pierre');
+
+INSERT INTO defaultdb.patients (id, id_medecin, first_name, last_name, age) VALUES (1,1, 'Pol', 'Harrohide', 20);
