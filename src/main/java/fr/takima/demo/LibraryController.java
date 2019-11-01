@@ -62,12 +62,6 @@ public class LibraryController {
         return "index";
     }
 
-    @GetMapping("/index_dev")
-    public String testPage(Model m) {
-
-        return "index_dev";
-    }
-
 
     @GetMapping("/delete/membre/{id}")
     public RedirectView deletePatient(@ModelAttribute Patient patient, RedirectAttributes attrs) {
