@@ -47,13 +47,13 @@ public class LibraryController {
 
     @GetMapping("/medecin")
     public String medecinPage(Model m){
-        m.addAttribute("medecins", medecinDAO.findAll());
+        m.addAttribute("membres", patientDAO.findAll());
         return "medecin";
     }
 
     @GetMapping("/famille")
     public String famillePage(Model m){
-        m.addAttribute("membres", patientDAO.findAll());
+
         return "famille";
     }
 
