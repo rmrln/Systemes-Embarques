@@ -71,7 +71,7 @@ public class LibraryController {
     }
 
     @GetMapping("/temperature/membre/{id}")
-    public String consultPatient(Model m,@PathVariable Long id) {
+    public String consultTemperatures(Model m,@PathVariable Long id) {
         Iterable<Temperature> str = temperatureDAO.findAll();
         ArrayList<Temperature> all_temperatures = new ArrayList<>();
         str.forEach(all_temperatures::add);
@@ -84,6 +84,22 @@ public class LibraryController {
 
         m.addAttribute("temperatures",temperatures);
         return "temperature";
+    }
+
+    @GetMapping("/dataPatient/membre/{id}")
+    public String consultPatient(Model m,@PathVariable Long id) {
+        /*Iterable<Temperature> str = temperatureDAO.findAll();
+        ArrayList<Temperature> all_temperatures = new ArrayList<>();
+        str.forEach(all_temperatures::add);
+        ArrayList<Temperature> temperatures = new ArrayList<>();
+        for( int i=0; i< all_temperatures.size(); i++){
+            if(all_temperatures.get(i).getId_patient() == id ){
+                temperatures.add(all_temperatures.get(i));
+            }
+        }*/
+
+        //m.addAttribute("temperatures",temperatures);
+        return "dataPatient";
     }
 
     @GetMapping("/modif/membre/{id}")
@@ -118,7 +134,6 @@ public class LibraryController {
         patientDAO.save(patient);
         return new RedirectView("/modif/membre/"+patient.getId());
     }
-
 
     @GetMapping("/delete/medecin/{id}")
     public RedirectView deleteMedecin(@ModelAttribute Medecin medecin, RedirectAttributes attrs) {

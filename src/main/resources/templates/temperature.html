@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 </head>
 
@@ -25,10 +26,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/index">Home </a>
+                <a class="nav-link" href="/index">Accueil </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/medecin">Médecins </a>
+                <a class="nav-link" href="/medecin">Médecin  <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/famille">Famille </a>
@@ -64,8 +65,9 @@
 
 </body>
 <!-- Bootstrap core JavaScript -->
-<script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<!-- Ficher .js pour les grpahiques de données -->
+<script src="js/graphiquesChartMedecin.js"></script>
 
 
 </html>
