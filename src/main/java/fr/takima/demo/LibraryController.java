@@ -88,17 +88,28 @@ public class LibraryController {
 
     @GetMapping("/dataPatient/membre/{id}")
     public String consultPatient(Model m,@PathVariable Long id) {
-        /*Iterable<Temperature> str = temperatureDAO.findAll();
+        //get all the temperatures in de DB
+        Iterable<Temperature> str = temperatureDAO.findAll();
         ArrayList<Temperature> all_temperatures = new ArrayList<>();
         str.forEach(all_temperatures::add);
-        ArrayList<Temperature> temperatures = new ArrayList<>();
+
+        //get the temperature of the patient with id
+        ArrayList<Temperature> temperatureArrayList = new ArrayList<>();
         for( int i=0; i< all_temperatures.size(); i++){
             if(all_temperatures.get(i).getId_patient() == id ){
-                temperatures.add(all_temperatures.get(i));
+                temperatureArrayList.add(all_temperatures.get(i));
             }
-        }*/
+        }
+        double[] temperaturesTable = new double[temperatureArrayList.size()];
+        String[] dateTempertaureTable = new String[temperatureArrayList.size()];
+        for( int i=0; i< temperatureArrayList.size(); i++){
 
-        //m.addAttribute("temperatures",temperatures);
+            temperaturesTable[i] = temperatureArrayList.get(i).getTemperature();
+            dateTempertaureTable[i] = temperatureArrayList.get(i).getDate();
+        }
+
+        m.addAttribute("temperatures",temperaturesTable);
+        m.addAttribute("datesTemperatures",dateTempertaureTable);
         return "dataPatient";
     }
 
