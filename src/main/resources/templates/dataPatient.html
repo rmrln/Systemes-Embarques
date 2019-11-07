@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Températures</title>
+    <title>Watch your family</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,7 +18,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand navTitle" href="/index">Températures</a>
+    <a class="navbar-brand navTitle" href="/index">Watch your family</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,10 +28,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="/index">Accueil </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/medecin">Médecin <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/famille">Famille </a>
             </li>
         </ul>
@@ -40,13 +40,17 @@
 
 <body>
 
-
+<div class="container">
     <canvas id="temperatures"></canvas>
+</div>
+
+
+
 
 
 </body>
 <!-- Ficher .js pour les graphiques de données -->
-<script src="js/graphiquesChartMedecin.js"></script>
+<script src="/js/graphiquesChartMedecin.js"></script>
 
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>

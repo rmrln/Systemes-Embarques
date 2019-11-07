@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Températures</title>
+    <title>Watch your Family</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,7 +18,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand navTitle" href="/index">Températures</a>
+    <a class="navbar-brand navTitle" href="/index">Watch your family</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -53,9 +53,9 @@
             <tr th:each="temperature : ${temperatures}">
                 <td scope="row" th:text="${temperature.date}"></td>
                 <td th:text="${temperature.temperature}"></td>
-                <td align="center">
+                <!--<td align="center">
                     <a th:href="'/delete/temperature/' + ${temperature.id}" class="btn btn-danger">Delete</a>
-                </td>
+                </td>-->
             </tr>
             </tbody>
         </table>
