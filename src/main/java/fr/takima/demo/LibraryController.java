@@ -1,8 +1,5 @@
 package fr.takima.demo;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,16 +23,20 @@ public class LibraryController {
     private final PatientDAO patientDAO;
     private final MedecinDAO medecinDAO;
     private final TemperatureDAO temperatureDAO;
+    private final PositionDAO positionDAO;
+    private final RespirationDAO respirationDAO;
     //Save the uploaded file to this folder
     private static String UPLOADED_FOLDER = "../CV-Project/uploads/";
     //TODO : Creer un folder pour medecin
     //TODO : Creer un folder pour temperature
 
-    public LibraryController(PatientDAO patientDAO, MedecinDAO medecinDAO, TemperatureDAO temperatureDAO) {
+    public LibraryController(PatientDAO patientDAO, MedecinDAO medecinDAO, TemperatureDAO temperatureDAO, PositionDAO positionDAO, RespirationDAO respirationDAO) {
 
         this.patientDAO = patientDAO;
         this.medecinDAO = medecinDAO;
         this.temperatureDAO = temperatureDAO;
+        this.positionDAO = positionDAO;
+        this.respirationDAO = respirationDAO;
     }
 
     @GetMapping
@@ -82,8 +82,9 @@ public class LibraryController {
             }
         }
 
-        m.addAttribute("temperatures",temperatures);
-        return "temperature";
+        m.addAttribute("data",temperatures);
+        m.addAttribute("labelData", "Température");
+        return "dataTableau";
     }
 
     @GetMapping("/dataPatient/membre/{id}")
@@ -108,7 +109,7 @@ public class LibraryController {
 
             temperaturesTable[i] = temperatureArrayList.get(i).getTemperature();
             dateTempertaureTable[i] = temperatureArrayList.get(i).getDate();
-            if(temperatureArrayList.get(i).getTemperature()>37){
+            if(temperatureArrayList.get(i).getTemperature()>37.5){
                 borderColorTemperatures[i] = "rgba(54, 162, 235, 1)";
                 sizePointTemperature[i] = 7;
             }else{
@@ -123,6 +124,40 @@ public class LibraryController {
         m.addAttribute("sizePointTemperature",sizePointTemperature);
         m.addAttribute("IdMember", id);
         return "dataPatient";
+    }
+
+    @GetMapping("/position/membre/{id}")
+    public String consultPosition(Model m,@PathVariable Long id) {
+        Iterable<Position> str = positionDAO.findAll();
+        ArrayList<Position> all_positions = new ArrayList<>();
+        str.forEach(all_positions::add);
+        ArrayList<Position> positionsPatient = new ArrayList<>();
+        for( int i=0; i< all_positions.size(); i++){
+            if(all_positions.get(i).getId_patient() == id ){
+                positionsPatient.add(all_positions.get(i));
+            }
+        }
+
+        m.addAttribute("data",positionsPatient);
+        m.addAttribute("labelData", "Position");
+        return "dataTableau";
+    }
+
+    @GetMapping("/respiration/membre/{id}")
+    public String consultRespiration(Model m,@PathVariable Long id) {
+        Iterable<Respiration> str = respirationDAO.findAll();
+        ArrayList<Respiration> all_respirations = new ArrayList<>();
+        str.forEach(all_respirations::add);
+        ArrayList<Respiration> respirationsPatient = new ArrayList<>();
+        for( int i=0; i< all_respirations.size(); i++){
+            if(all_respirations.get(i).getId_patient() == id ){
+                respirationsPatient.add(all_respirations.get(i));
+            }
+        }
+
+        m.addAttribute("data",respirationsPatient);
+        m.addAttribute("labelData", "Flue d'aire");
+        return "dataTableau";
     }
 
     @GetMapping("/modif/membre/{id}")

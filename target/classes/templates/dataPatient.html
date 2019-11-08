@@ -43,9 +43,14 @@
 <div class="container">
     <div class="wrapper">
         <canvas id="temperaturesChart"></canvas>
+        <a th:href="'/respiration/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des réspirations</a>
+        <a th:href="'/position/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des positions</a>
+        <a th:href="'/temperature/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des températures</a>
     </div>
-    <a th:href="'/temperature/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des températures</a>
 </div>
+
+
+
 
 </body>
 <!-- Ficher .js pour les graphiques de données -->
