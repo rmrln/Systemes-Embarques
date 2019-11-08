@@ -28,3 +28,23 @@ create table temperatures
         id_patient bigint null,
         temperature double null
     );
+
+create table positions
+(
+    id bigint auto_increment,
+    constraint positions_pk
+        primary key (id),
+    date TEXT not null,
+    id_patient bigint null,
+    position int null
+);
+
+create table respiration
+(
+    id bigint auto_increment,
+    constraint respiration_pk
+        primary key (id),
+    date TEXT not null,
+    id_patient bigint null,
+    airflow  double null
+);
