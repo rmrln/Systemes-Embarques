@@ -102,14 +102,26 @@ public class LibraryController {
         }
         double[] temperaturesTable = new double[temperatureArrayList.size()];
         String[] dateTempertaureTable = new String[temperatureArrayList.size()];
+        String[] borderColorTemperatures = new String[temperatureArrayList.size()];
+        double[] sizePointTemperature = new double[temperatureArrayList.size()];
         for( int i=0; i< temperatureArrayList.size(); i++){
 
             temperaturesTable[i] = temperatureArrayList.get(i).getTemperature();
             dateTempertaureTable[i] = temperatureArrayList.get(i).getDate();
+            if(temperatureArrayList.get(i).getTemperature()>37){
+                borderColorTemperatures[i] = "rgba(54, 162, 235, 1)";
+                sizePointTemperature[i] = 7;
+            }else{
+                borderColorTemperatures[i] = "rgba(255, 99, 132, 1)";
+                sizePointTemperature[i] = 4;
+            }
         }
 
         m.addAttribute("temperatures",temperaturesTable);
         m.addAttribute("datesTemperatures",dateTempertaureTable);
+        m.addAttribute("borderColorTemperatures",borderColorTemperatures);
+        m.addAttribute("sizePointTemperature",sizePointTemperature);
+        m.addAttribute("IdMember", id);
         return "dataPatient";
     }
 
