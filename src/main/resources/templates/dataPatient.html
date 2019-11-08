@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -41,16 +41,56 @@
 <body>
 
 <div class="container">
-    <canvas id="temperatures"></canvas>
+    <div class="wrapper">
+        <canvas id="temperaturesChart"></canvas>
+    </div>
+    <a th:href="'/temperature/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des températures</a>
 </div>
-
-
-
-
 
 </body>
 <!-- Ficher .js pour les graphiques de données -->
-<script src="/js/graphiquesChartMedecin.js"></script>
+<!--<script src="/js/graphiquesChartMedecin.js"></script>-->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var temperatures = [[${temperatures}]];
+    var datesTemperatures = [[${datesTemperatures}]];
+    var borderColorTemperatures =[[${borderColorTemperatures}]];
+    var sizePointTemperature = [[${sizePointTemperature}]];
+    var ctx = document.getElementById('temperaturesChart').getContext('2d');
+    var data ={
+        labels: datesTemperatures,
+        datasets: [{
+            fill : false,
+            label: 'Température du patient',
+            data: temperatures,
+            borderColor: borderColorTemperatures,
+            pointRadius: sizePointTemperature,
+            borderWidth: 1
+        }]
+    };
+    var options = {
+        scales: {
+            xAxew : [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 35,
+                    max: 40,
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+    var chart = new Chart('temperaturesChart', {
+        type: 'line',
+        data: data,
+        options: options
+    });
+    /*]]>*/
+</script>
 
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>

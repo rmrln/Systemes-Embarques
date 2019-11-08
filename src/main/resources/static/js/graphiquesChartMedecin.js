@@ -1,7 +1,69 @@
-var ctx = document.getElementById('temperatures').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
+var ctx = document.getElementById('temperaturesChart').getContext('2d');
+
+
+var data =
+    /*{
+    labels: generateLabels(),
+    datasets: [{
+        backgroundColor: utils.transparentize(presets.red),
+        borderColor: presets.red,
+        data: generateData(),
+        hidden: true,
+        label: 'D0'
+    }, {
+        backgroundColor: utils.transparentize(presets.orange),
+        borderColor: presets.orange,
+        data: generateData(),
+        label: 'D1',
+        fill: '-1'
+    }, {
+        backgroundColor: utils.transparentize(presets.yellow),
+        borderColor: presets.yellow,
+        data: generateData(),
+        hidden: true,
+        label: 'D2',
+        fill: 1
+    }, {
+        backgroundColor: utils.transparentize(presets.green),
+        borderColor: presets.green,
+        data: generateData(),
+        label: 'D3',
+        fill: '-1'
+    }, {
+        backgroundColor: utils.transparentize(presets.blue),
+        borderColor: presets.blue,
+        data: generateData(),
+        label: 'D4',
+        fill: '-1'
+    }, {
+        backgroundColor: utils.transparentize(presets.grey),
+        borderColor: presets.grey,
+        data: generateData(),
+        label: 'D5',
+        fill: '+2'
+    }, {
+        backgroundColor: utils.transparentize(presets.purple),
+        borderColor: presets.purple,
+        data: generateData(),
+        label: 'D6',
+        fill: false
+    }, {
+        backgroundColor: utils.transparentize(presets.red),
+        borderColor: presets.red,
+        data: generateData(),
+        label: 'D7',
+        fill: 8
+    }, {
+        backgroundColor: utils.transparentize(presets.orange),
+        borderColor: presets.orange,
+        data: generateData(),
+        hidden: true,
+        label: 'D8',
+        fill: 'end'
+    }]
+};*/
+
+{
         labels: ['16/10/19', '17/10/19', '18/10/19', '19/10/19', '20/10/19', '21/10/19'],
         datasets: [{
             fill : false,
@@ -25,21 +87,27 @@ var myChart = new Chart(ctx, {
             ],
             borderWidth: 1
         }]
-    },
-    options: {
-        scales: {
-            xAxew : [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }],
-            yAxes: [{
-                ticks: {
-                    min: 35,
-                    max: 40,
-                    beginAtZero: true
-                }
-            }]
-        }
+    };
+
+var options = {
+    scales: {
+        xAxew : [{
+            ticks: {
+                beginAtZero: true
+            }
+        }],
+        yAxes: [{
+            ticks: {
+                min: 35,
+                max: 40,
+                beginAtZero: true
+            }
+        }]
     }
+};
+
+var chart = new Chart(ctx, {
+    type: 'line',
+    data: data,
+    options: options
 });
