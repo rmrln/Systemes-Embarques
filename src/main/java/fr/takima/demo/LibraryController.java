@@ -91,6 +91,7 @@ public class LibraryController {
 
     @GetMapping("/dataPatient/membre/{id}")
     public String consultPatient(Model m,@PathVariable Long id) {
+        //Temperature
         //get all the temperatures in de DB
         Iterable<Temperature> str = temperatureDAO.findAll();
         ArrayList<Temperature> all_temperatures = new ArrayList<>();
@@ -123,7 +124,38 @@ public class LibraryController {
         m.addAttribute("temperatures",temperaturesTable);
         m.addAttribute("datesTemperatures",dateTempertaureTable);
         m.addAttribute("borderColorTemperatures",borderColorTemperatures);
-        m.addAttribute("sizePointTemperature",sizePointTemperature);
+        m.addAttribute("sizePointTemperatures",sizePointTemperature);
+
+        //Respirations
+        //get all the respirations in de DB
+        Iterable<Respiration> str_respiration = respirationDAO.findAll();
+        ArrayList<Respiration> all_respirations = new ArrayList<>();
+        str_respiration.forEach(all_respirations::add);
+
+        //get the respirations of the patient with id
+        ArrayList<Respiration> respirationsArrayList = new ArrayList<>();
+        for( int i=0; i< all_respirations.size(); i++){
+            if(all_respirations.get(i).getId_patient() == id ){
+                respirationsArrayList.add(all_respirations.get(i));
+            }
+        }
+        int[] respirationsTable = new int[respirationsArrayList.size()];
+        String[] dateRespirationsTable = new String[respirationsArrayList.size()];
+        String[] borderColorRespirations = new String[respirationsArrayList.size()];
+        double[] sizePointRespirations = new double[respirationsArrayList.size()];
+        for( int i=0; i< respirationsArrayList.size(); i++){
+
+            respirationsTable[i] = respirationsArrayList.get(i).getAirflow();
+            dateRespirationsTable[i] = respirationsArrayList.get(i).getDate();
+            borderColorRespirations[i] = "rgba(255, 99, 132, 1)";
+            sizePointRespirations[i] = 4;
+        }
+
+        m.addAttribute("respirations",respirationsTable);
+        m.addAttribute("datesRespirations",dateRespirationsTable);
+        m.addAttribute("borderColorRespirations",borderColorRespirations);
+        m.addAttribute("sizePointRespirations",sizePointRespirations);
+
         m.addAttribute("IdMember", id);
         return "dataPatient";
     }
