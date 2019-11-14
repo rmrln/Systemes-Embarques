@@ -1,17 +1,33 @@
-package fr.takima.demo;
+package fr.takima.demo.model;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity(name = "medecins")
-public class Medecin {
+@Entity(name = "patients")
+public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "id_medecin")
+    private  long id_medecin;
     @Column(name = "first_name")
     private  String firstName;
     @Column(name = "last_name")
     private  String lastName;
+    @Column(name = "age")
+    private  String age;
+
+    public long getId_medecin() {
+        return id_medecin;
+    }
+
+    public void setId_medecin(long id_medecin) {
+        this.id_medecin = id_medecin;
+    }
 
     public long getId() {
         return id;
@@ -36,4 +52,13 @@ public class Medecin {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
 }

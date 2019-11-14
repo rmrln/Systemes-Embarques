@@ -1,9 +1,10 @@
-package fr.takima.demo;
+package fr.takima.demo.model;
 
 import javax.persistence.*;
 
-@Entity(name = "positions")
-public class Position {
+@Entity(name = "temperatures")
+public class Temperature {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -11,11 +12,20 @@ public class Position {
     @Column(name = "id_patient")
     private  long id_patient;
 
-    @Column(name = "position")
-    private  int position;
+    @Column(name = "temperature")
+    private  double temperature;
 
     @Column(name = "date")
     private  String date;
+
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public long getId() {
         return id;
@@ -33,23 +43,15 @@ public class Position {
         this.id_patient = id_patient;
     }
 
-    public int getPosition() {
-        return position;
+    public double getTemperature() {
+        return temperature;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
     }
 
     public String getData(){
-        return "" + position;
+        return "" + temperature;
     }
 }
