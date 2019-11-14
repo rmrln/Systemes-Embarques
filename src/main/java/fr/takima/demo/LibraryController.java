@@ -1,5 +1,7 @@
 package fr.takima.demo;
 
+import fr.takima.demo.model.*;
+import fr.takima.demo.model.dao.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
