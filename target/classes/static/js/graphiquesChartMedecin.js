@@ -1,95 +1,19 @@
-var ctx = document.getElementById('temperaturesChart').getContext('2d');
-
-
-var data =
-    /*{
-    labels: generateLabels(),
+//Get Thymeleaf DOM Object
+var ctx_respirations = document.getElementById('respirationsChart').getContext('2d');
+var ctx_temperatures  = document.getElementById('temperaturesChart').getContext('2d');
+//Temperature Chart
+var data_temperatures ={
+    labels: datesTemperatures,
     datasets: [{
-        backgroundColor: utils.transparentize(presets.red),
-        borderColor: presets.red,
-        data: generateData(),
-        hidden: true,
-        label: 'D0'
-    }, {
-        backgroundColor: utils.transparentize(presets.orange),
-        borderColor: presets.orange,
-        data: generateData(),
-        label: 'D1',
-        fill: '-1'
-    }, {
-        backgroundColor: utils.transparentize(presets.yellow),
-        borderColor: presets.yellow,
-        data: generateData(),
-        hidden: true,
-        label: 'D2',
-        fill: 1
-    }, {
-        backgroundColor: utils.transparentize(presets.green),
-        borderColor: presets.green,
-        data: generateData(),
-        label: 'D3',
-        fill: '-1'
-    }, {
-        backgroundColor: utils.transparentize(presets.blue),
-        borderColor: presets.blue,
-        data: generateData(),
-        label: 'D4',
-        fill: '-1'
-    }, {
-        backgroundColor: utils.transparentize(presets.grey),
-        borderColor: presets.grey,
-        data: generateData(),
-        label: 'D5',
-        fill: '+2'
-    }, {
-        backgroundColor: utils.transparentize(presets.purple),
-        borderColor: presets.purple,
-        data: generateData(),
-        label: 'D6',
-        fill: false
-    }, {
-        backgroundColor: utils.transparentize(presets.red),
-        borderColor: presets.red,
-        data: generateData(),
-        label: 'D7',
-        fill: 8
-    }, {
-        backgroundColor: utils.transparentize(presets.orange),
-        borderColor: presets.orange,
-        data: generateData(),
-        hidden: true,
-        label: 'D8',
-        fill: 'end'
+        fill : false,
+        label: 'Température du patient',
+        data: temperatures,
+        borderColor: borderColorTemperatures,
+        pointRadius: sizePointTemperatures,
+        borderWidth: 1
     }]
-};*/
-
-{
-        labels: ['16/10/19', '17/10/19', '18/10/19', '19/10/19', '20/10/19', '21/10/19'],
-        datasets: [{
-            fill : false,
-            label: 'Température du patient',
-            data: [36.7, 36.5, 36.6, 36.8, 36.4, 36.6],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
-
-var options = {
+};
+var options_temperatures = {
     scales: {
         xAxew : [{
             ticks: {
@@ -106,8 +30,52 @@ var options = {
     }
 };
 
-var chart = new Chart(ctx, {
+var chart_temperature = new Chart(ctx_temperatures, {
     type: 'line',
-    data: data,
-    options: options
+    data: data_temperatures,
+    options: options_temperatures
 });
+
+//Respiration Chart
+var data_respiration ={
+    labels: datesRespirations,
+    datasets: [{
+        fill : false,
+        label: 'Température du patient',
+        data: respirations,
+        borderColor: borderColorRespirations,
+        pointRadius: sizePointRespirations,
+        borderWidth: 1
+    }]
+};
+var options_respirations = {
+    scales: {
+        xAxew : [{
+            ticks: {
+                beginAtZero: true
+            }
+        }],
+        yAxes: [{
+            ticks: {
+                min: 0,
+                max: 100,
+                beginAtZero: true
+            }
+        }]
+    }
+};
+
+var chart_respirations = new Chart(ctx_respirations, {
+    type: 'line',
+    data: data_respiration,
+    options: options_respirations
+});
+
+function getTemperatureBorderColor(temperatures) {
+    let borderColorTemperatures = [];
+    temperatures.forEach(function(temperature){
+        if(temperature > 37.5) borderColorTemperatures.push('rgba(54, 162, 235, 1)');
+        else borderColorTemperatures.push('rgba(255, 99, 132, 1)');
+    });
+    return borderColorTemperatures;
+}

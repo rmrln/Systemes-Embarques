@@ -4,17 +4,16 @@
 <head>
     <title>Watch your family</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    <link th:href="@{https://fonts.googleapis.com/css?family=Anton&display=swap}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    <link rel="stylesheet" href="https://fontawesome.com/v4.7.0/assets/font-awesome/css/font-awesome.css">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-
+    <link rel="stylesheet" th:href="@{https://fontawesome.com/v4.7.0/assets/font-awesome/css/font-awesome.css}">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Pacifico&display=swap}" rel="stylesheet">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Manjari&display=swap}" rel="stylesheet">
+    <script th:src="@{//code.jquery.com/jquery-1.11.1.min.js}"></script>
+    <script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/chart.js@2.8.0}"></script>
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -60,99 +59,33 @@
 
 </body>
 <!-- Ficher .js pour les graphiques de données -->
-<!--<script src="/js/graphiquesChartMedecin.js"></script>-->
+<!--<script type="text/javascript" th:src="@{/js/graphiquesChartMedecin.js}"></script>-->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js}"></script>
 <script th:inline="javascript">
-    /*<![CDATA[*/
-    //Temperature Chart
     var temperatures = [[${temperatures}]];
     var datesTemperatures = [[${datesTemperatures}]];
     var borderColorTemperatures =[[${borderColorTemperatures}]];
     var sizePointTemperatures = [[${sizePointTemperatures}]];
-    var data_temperatures ={
-        labels: datesTemperatures,
-        datasets: [{
-            fill : false,
-            label: 'Température du patient',
-            data: temperatures,
-            borderColor: borderColorTemperatures,
-            pointRadius: sizePointTemperatures,
-            borderWidth: 1
-        }]
-    };
-    var options_temperatures = {
-        scales: {
-            xAxew : [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }],
-            yAxes: [{
-                ticks: {
-                    min: 35,
-                    max: 40,
-                    beginAtZero: true
-                }
-            }]
-        }
-    };
-    var chart_temperature = new Chart('temperaturesChart', {
-        type: 'line',
-        data: data_temperatures,
-        options: options_temperatures
-    });
-
-    //Respiration Chart
     var respirations = [[${respirations}]];
     var datesRespirations = [[${datesRespirations}]];
     var borderColorRespirations =[[${borderColorRespirations}]];
     var sizePointRespirations = [[${sizePointRespirations}]];
-    var data_respiration ={
-        labels: datesRespirations,
-        datasets: [{
-            fill : false,
-            label: 'Température du patient',
-            data: respirations,
-            borderColor: borderColorRespirations,
-            pointRadius: sizePointRespirations,
-            borderWidth: 1
-        }]
-    };
-    var options_respirations = {
-        scales: {
-            xAxew : [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }],
-            yAxes: [{
-                ticks: {
-                    min: 0,
-                    max: 100,
-                    beginAtZero: true
-                }
-            }]
-        }
-    };
-
-    var chart_respirations = new Chart('respirationsChart', {
-        type: 'line',
-        data: data_respiration,
-        options: options_respirations
-    });
-    /*]]>*/
+    document.addEventListener( [],borderColorTemperatures , {passive: true});
 </script>
+<script src="/js/graphiquesChartMedecin.js"></script>
 
 <script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js}"></script>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 
 <!-- Plugin JavaScript -->
 <script th:src="@{/js/jquery.easing.min.js}"></script>
 
 <!-- Contact form JavaScript -->
-<script th:src="@{/js/jqBootstrapValidation.js}"></script>
-<script th:src="@{/js/contact_me.js}"></script>
+<!--<script th:src="@{/js/jqBootstrapValidation.js}"></script>
+<script th:src="@{/js/contact_me.js}"></script>-->
 
 <!-- Custom scripts for this template -->
-<script th:src="@{/js/agency.min.js}"></script>
+<!--<script th:src="@{/js/agency.min.js}"></script>-->
 
 </html>
