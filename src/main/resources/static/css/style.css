@@ -76,7 +76,7 @@ img {
 header.headPers{
     text-align:center;
     color:#fff;
-    background-image:url(../img/cahier_fond.jpg);
+    background-image:url(../img/accueil.jpg);
     background-repeat:no-repeat;
     background-attachment:scroll;
     background-position:center center;
@@ -91,6 +91,7 @@ header.headPers{
     font-size: 3.5em;
     font-family: 'Pacifico', cursive;
     color: #1d2124;
+    opacity: 1;
 }
 .smalmarg{
     padding-left: 10px;
@@ -159,6 +160,10 @@ background-color:#fed136;
     background-color: white;
     color: black;
     border: 2px solid #fed136;
+    position: center;
+    display: block;
+    margin : auto;
+    width:250px;
 }
 
 .button1:hover {

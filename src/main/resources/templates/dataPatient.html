@@ -51,7 +51,7 @@
     <div class="wrapper">
         <canvas id="respirationsChart"></canvas>
         <a th:href="'/position/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des positions</a>
-        <a th:href="'/respiration/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des réspirations</a>
+        <a th:href="'/respiration/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des respirations</a>
     </div>
 </div>
 
@@ -60,8 +60,8 @@
 
 </body>
 <!-- Ficher .js pour les graphiques de données -->
-<!--<script src="/js/graphiquesChartMedecin.js"></script>-->
-<script th:inline="javascript">
+<script src="/js/graphiquesChartMedecin.js"></script>
+<!--<script th:inline="javascript">
     /*<![CDATA[*/
     //Temperature Chart
     var temperatures = [[${temperatures}]];
@@ -140,7 +140,7 @@
         options: options_respirations
     });
     /*]]>*/
-</script>
+</script>-->
 
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
