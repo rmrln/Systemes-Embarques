@@ -1,4 +1,4 @@
-package fr.takima.demo;
+package fr.takima.demo.model;
 
 import javax.persistence.*;
 
@@ -17,6 +17,7 @@ public class Temperature {
 
     @Column(name = "date")
     private  String date;
+
 
     public String getDate() {
         return date;
@@ -50,4 +51,7 @@ public class Temperature {
         this.temperature = temperature;
     }
 
+    public String getData(){
+        return "" + temperature;
+    }
 }

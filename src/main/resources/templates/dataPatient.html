@@ -43,32 +43,43 @@
 <div class="container">
     <div class="wrapper">
         <canvas id="temperaturesChart"></canvas>
+        <a th:href="'/temperature/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des températures</a>
     </div>
-    <a th:href="'/temperature/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des températures</a>
 </div>
+
+<div class="container">
+    <div class="wrapper">
+        <canvas id="respirationsChart"></canvas>
+        <a th:href="'/position/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des positions</a>
+        <a th:href="'/respiration/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des réspirations</a>
+    </div>
+</div>
+
+
+
 
 </body>
 <!-- Ficher .js pour les graphiques de données -->
 <!--<script src="/js/graphiquesChartMedecin.js"></script>-->
 <script th:inline="javascript">
     /*<![CDATA[*/
+    //Temperature Chart
     var temperatures = [[${temperatures}]];
     var datesTemperatures = [[${datesTemperatures}]];
     var borderColorTemperatures =[[${borderColorTemperatures}]];
-    var sizePointTemperature = [[${sizePointTemperature}]];
-    var ctx = document.getElementById('temperaturesChart').getContext('2d');
-    var data ={
+    var sizePointTemperatures = [[${sizePointTemperatures}]];
+    var data_temperatures ={
         labels: datesTemperatures,
         datasets: [{
             fill : false,
             label: 'Température du patient',
             data: temperatures,
             borderColor: borderColorTemperatures,
-            pointRadius: sizePointTemperature,
+            pointRadius: sizePointTemperatures,
             borderWidth: 1
         }]
     };
-    var options = {
+    var options_temperatures = {
         scales: {
             xAxew : [{
                 ticks: {
@@ -84,10 +95,49 @@
             }]
         }
     };
-    var chart = new Chart('temperaturesChart', {
+    var chart_temperature = new Chart('temperaturesChart', {
         type: 'line',
-        data: data,
-        options: options
+        data: data_temperatures,
+        options: options_temperatures
+    });
+
+    //Respiration Chart
+    var respirations = [[${respirations}]];
+    var datesRespirations = [[${datesRespirations}]];
+    var borderColorRespirations =[[${borderColorRespirations}]];
+    var sizePointRespirations = [[${sizePointRespirations}]];
+    var data_respiration ={
+        labels: datesRespirations,
+        datasets: [{
+            fill : false,
+            label: 'Température du patient',
+            data: respirations,
+            borderColor: borderColorRespirations,
+            pointRadius: sizePointRespirations,
+            borderWidth: 1
+        }]
+    };
+    var options_respirations = {
+        scales: {
+            xAxew : [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: 100,
+                    beginAtZero: true
+                }
+            }]
+        }
+    };
+
+    var chart_respirations = new Chart('respirationsChart', {
+        type: 'line',
+        data: data_respiration,
+        options: options_respirations
     });
     /*]]>*/
 </script>
