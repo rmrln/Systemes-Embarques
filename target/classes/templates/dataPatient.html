@@ -13,7 +13,9 @@
     <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/min/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@1.8.0"></script>
 
 </head>
 
@@ -57,22 +59,24 @@
         </div>
     </div>
     <div class="row">
-        <div class="col"></div>
-        <div class="col-6">
+        <div class="col">
             <div class="wrapper">
                 <canvas id="positionsChart"></canvas>
                 <a th:href="'/position/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des positions</a>
             </div>
         </div>
-        <div class="col"></div>
+        <div class="col">
+            <div class="wrapper">
+                <canvas id="randomChart"></canvas>
+            </div>
+        </div>
     </div>
 </div>
 
 </body>
 <!-- Ficher .js pour les graphiques de données -->
-<script src="/js/graphiquesChartMedecin.js"></script>
-<!--<script th:inline="javascript">
-    /*<![CDATA[*/
+<!--<script src="/js/graphiquesChartMedecin.js"></script>-->
+<script th:inline="javascript">
     //Temperature Chart
     var temperatures = [[${temperatures}]];
     var datesTemperatures = [[${datesTemperatures}]];
@@ -207,8 +211,69 @@
         options: options_positions
     });
 
-    /*]]>*/
-</script>-->
+    // test graphique live avec valeurs randoms
+    function generateRandomNumber() {
+        var min = 36.4;
+        var max = 41.5;
+        return Math.random() * (max - min) + min;
+    }
+
+    function onRefresh(chart) {
+        chart.config.data.datasets.forEach(function(dataset) {
+            dataset.data.push({
+                x: Date.now(),
+                y: generateRandomNumber()
+            });
+        });
+    }
+
+    var data_random = {
+        datasets: [{
+            label: 'Graph random live',
+            borderColor: borderColorPositions,
+            pointRadius: sizePointPositions,
+            fill: false,
+            data: []
+        }]
+    };
+
+    var options_random = {
+        scales: {
+            xAxes: [{
+                type: 'realtime',
+                realtime: {
+                    duration: 20000,
+                    refresh: 1000,
+                    delay: 2000,
+                    onRefresh: onRefresh
+                }
+            }],
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'value'
+                }
+            }]
+        },
+        tooltips: {
+            mode: 'nearest',
+            intersect: false
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: false
+        }
+    };
+
+    var chart_random = new Chart('randomChart', {
+        type: 'line',
+        data: data_random,
+        options: options_random
+    });
+
+
+
+</script>
 
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
