@@ -41,27 +41,37 @@
 <body>
 
 <div class="container">
-    <div class="wrapper">
-        <canvas id="temperaturesChart"></canvas>
-        <a th:href="'/temperature/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des températures</a>
+    <div class="row">
+        <div class="col">
+            <div class="wrapper">
+                <canvas id="temperaturesChart"></canvas>
+                <a th:href="'/temperature/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des températures</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="wrapper">
+                <canvas id="respirationsChart"></canvas>
+
+                <a th:href="'/respiration/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des respirations</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <div class="wrapper">
+                <canvas id="positionsChart"></canvas>
+                <a th:href="'/position/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des positions</a>
+            </div>
+        </div>
+        <div class="col"></div>
     </div>
 </div>
-
-<div class="container">
-    <div class="wrapper">
-        <canvas id="respirationsChart"></canvas>
-        <a th:href="'/position/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des positions</a>
-        <a th:href="'/respiration/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des respirations</a>
-    </div>
-</div>
-
-
-
 
 </body>
 <!-- Ficher .js pour les graphiques de données -->
-<script src="/js/graphiquesChartMedecin.js"></script>
-<!--<script th:inline="javascript">
+<!--<script src="/js/graphiquesChartMedecin.js"></script>-->
+<script th:inline="javascript">
     /*<![CDATA[*/
     //Temperature Chart
     var temperatures = [[${temperatures}]];
@@ -81,7 +91,7 @@
     };
     var options_temperatures = {
         scales: {
-            xAxew : [{
+            xAxes : [{
                 ticks: {
                     beginAtZero: true
                 }
@@ -91,6 +101,10 @@
                     min: 35,
                     max: 40,
                     beginAtZero: true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Températures'
                 }
             }]
         }
@@ -110,7 +124,7 @@
         labels: datesRespirations,
         datasets: [{
             fill : false,
-            label: 'Température du patient',
+            label: 'Respiration du patient',
             data: respirations,
             borderColor: borderColorRespirations,
             pointRadius: sizePointRespirations,
@@ -119,7 +133,7 @@
     };
     var options_respirations = {
         scales: {
-            xAxew : [{
+            xAxes : [{
                 ticks: {
                     beginAtZero: true
                 }
@@ -127,8 +141,12 @@
             yAxes: [{
                 ticks: {
                     min: 0,
-                    max: 100,
+                    max: 60,
                     beginAtZero: true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Flux d air'
                 }
             }]
         }
@@ -139,8 +157,58 @@
         data: data_respiration,
         options: options_respirations
     });
+
+    // Graphique positions
+    var positions = [[${positions}]];
+    var datesPositions = [[${datesPositions}]];
+    var borderColorPositions =[[${borderColorPositions}]];
+    var sizePointPositions = [[${sizePointPositions}]];
+    var data_positions ={
+        labels: datesPositions,
+        yLabels: ['Debout', 'Allongé'],
+        datasets: [{
+            fill : false,
+            label: 'Position du patient',
+            steppedLine: true,
+            data: positions,
+            borderColor: borderColorPositions,
+            pointRadius: sizePointPositions,
+            borderWidth: 1
+        }]
+    };
+    var options_positions = {
+        scales: {
+            xAxes : [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            yAxes: [{
+                display: true,
+                position: 'left',
+                type: 'category',
+                ticks: {
+                    min: 0,
+                    max: 1,
+                    stepSize: 1,
+                    reverse: false
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Positions'
+                }
+            }]
+        }
+    };
+
+    var chart_positions = new Chart('positionsChart', {
+        type: 'line',
+        data: data_positions,
+        options: options_positions
+    });
+
     /*]]>*/
-</script>-->
+</script>
 
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/bootstrap.bundle.min.js}"></script>

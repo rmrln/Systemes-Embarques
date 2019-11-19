@@ -156,6 +156,46 @@ public class LibraryController {
         m.addAttribute("borderColorRespirations",borderColorRespirations);
         m.addAttribute("sizePointRespirations",sizePointRespirations);
 
+        // Positions
+        //get all the positions in de DB
+        Iterable<Position> str_position = positionDAO.findAll();
+        ArrayList<Position> all_positions = new ArrayList<>();
+        str_position.forEach(all_positions::add);
+
+        //get the positions of the patient with id
+        ArrayList<Position> positionsArrayList = new ArrayList<>();
+        for( int i=0; i< all_positions.size(); i++){
+            if(all_positions.get(i).getId_patient() == id ){
+                positionsArrayList.add(all_positions.get(i));
+            }
+        }
+
+
+
+
+        String[] positionsTable = new String[positionsArrayList.size()];
+        String[] datePositionsTable = new String[positionsArrayList.size()];
+        String[] borderColorPositions = new String[positionsArrayList.size()];
+        double[] sizePointPositions = new double[positionsArrayList.size()];
+        for( int i=0; i< positionsArrayList.size(); i++) {
+            // recuperer le type de position : debout ou allongé
+            if (positionsArrayList.get(i).getPosition() == 5) {
+                positionsTable[i] = "Debout"; // debout
+            } else {
+                positionsTable[i] = "Allongé"; // allongé
+            }
+
+            //positionsTable[i] = positionsArrayList.get(i).getPosition();
+            datePositionsTable[i] = positionsArrayList.get(i).getDate();
+            borderColorPositions[i] = "rgba(255, 99, 132, 1)";
+            sizePointPositions[i] = 4;
+        }
+
+        m.addAttribute("positions",positionsTable);
+        m.addAttribute("datesPositions",datePositionsTable);
+        m.addAttribute("borderColorPositions",borderColorPositions);
+        m.addAttribute("sizePointPositions",sizePointPositions);
+
         m.addAttribute("IdMember", id);
         return "dataPatient";
     }
