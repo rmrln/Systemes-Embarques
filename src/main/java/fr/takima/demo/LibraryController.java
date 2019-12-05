@@ -2,6 +2,8 @@ package fr.takima.demo;
 
 import fr.takima.demo.model.*;
 import fr.takima.demo.model.dao.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,24 +20,20 @@ import java.util.*;
 /**
  *
  */
-@RequestMapping("/")
+@RequestMapping(path="/api", produces= MediaType.APPLICATION_JSON_VALUE)
 @Controller
 public class LibraryController {
 
     private final PatientDAO patientDAO;
-    private final MedecinDAO medecinDAO;
+    //private final MedecinDAO medecinDAO;
     private final TemperatureDAO temperatureDAO;
     private final PositionDAO positionDAO;
     private final RespirationDAO respirationDAO;
-    //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "../CV-Project/uploads/";
-    //TODO : Creer un folder pour medecin
-    //TODO : Creer un folder pour temperature
 
-    public LibraryController(PatientDAO patientDAO, MedecinDAO medecinDAO, TemperatureDAO temperatureDAO, PositionDAO positionDAO, RespirationDAO respirationDAO) {
+    public LibraryController(PatientDAO patientDAO, /*MedecinDAO medecinDAO,*/ TemperatureDAO temperatureDAO, PositionDAO positionDAO, RespirationDAO respirationDAO) {
 
         this.patientDAO = patientDAO;
-        this.medecinDAO = medecinDAO;
+        //this.medecinDAO = medecinDAO;
         this.temperatureDAO = temperatureDAO;
         this.positionDAO = positionDAO;
         this.respirationDAO = respirationDAO;
@@ -45,7 +43,6 @@ public class LibraryController {
     public String homePage(Model m) {
         return "index";
     }
-
 
     @GetMapping("/medecin")
     public String medecinPage(Model m){
@@ -57,19 +54,6 @@ public class LibraryController {
     public String famillePage(Model m){
 
         return "famille";
-    }
-
-    @GetMapping("/index")
-    public String indexPage(Model m) {
-        return "index";
-    }
-
-
-    @GetMapping("/delete/membre/{id}")
-    public RedirectView deletePatient(@ModelAttribute Patient patient, RedirectAttributes attrs) {
-        attrs.addFlashAttribute("message", "CV supprimé avec succès");
-        patientDAO.deleteById(patient.getId());
-        return new RedirectView("/famille");
     }
 
     @GetMapping("/temperature/membre/{id}")
@@ -232,96 +216,5 @@ public class LibraryController {
         m.addAttribute("data",respirationsPatient);
         m.addAttribute("labelData", "Flue d'aire");
         return "dataTableau";
-    }
-
-    @GetMapping("/modif/membre/{id}")
-    public String viewPatient(Model m,@PathVariable Long id){
-        m.addAttribute("patient",patientDAO.findById(id));
-        return "modif";
-    }
-
-    @PostMapping("/modif/membre")
-    public RedirectView updatePatient(@ModelAttribute Patient patient,@RequestParam("file") MultipartFile file, RedirectAttributes attrs) {
-
-        try {
-
-            // Get the file and save it somewhere
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-            Files.write(path, bytes);
-
-            attrs.addFlashAttribute("msg",
-                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            attrs.addFlashAttribute("msg",
-                    "Bad" + file.getOriginalFilename() + "'");
-        }
-        attrs.addFlashAttribute("message", "Utilisateur ajouté avec succès"+UPLOADED_FOLDER);
-        System.out.println(UPLOADED_FOLDER + file.getOriginalFilename());
-        String pathModif = "../../../../uploads/";
-        String photo = pathModif + file.getOriginalFilename();
-
-        patientDAO.save(patient);
-        return new RedirectView("/modif/membre/"+patient.getId());
-    }
-
-    @GetMapping("/delete/medecin/{id}")
-    public RedirectView deleteMedecin(@ModelAttribute Medecin medecin, RedirectAttributes attrs) {
-        medecinDAO.deleteById(medecin.getId());
-        attrs.addFlashAttribute("message", "Medecin supprimé avec succès");
-        return new RedirectView("/medecin");
-    }
-
-    @GetMapping("/consult/medecin/{id}")
-    public String consultMedecin(Model m,@PathVariable Long id) {
-        Optional str = medecinDAO.findById(id);
-        if(str.isPresent()){
-            m.addAttribute("patient",str.get());
-        }
-        return "consultMedecin";
-    }
-
-    @GetMapping("/modif/medecin/{id}")
-    public String viewMedecin(Model m,@PathVariable Long id){
-        m.addAttribute("patient",medecinDAO.findById(id));
-        return "modifMedecin";
-    }
-
-    @PostMapping("/modif/medecin")
-    public RedirectView updateMedecin(@ModelAttribute Medecin medecin,@RequestParam("file") MultipartFile file, RedirectAttributes attrs) {
-
-        try {
-
-            // Get the file and save it somewhere
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-            Files.write(path, bytes);
-
-            attrs.addFlashAttribute("msg",
-                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            attrs.addFlashAttribute("msg",
-                    "Bad" + file.getOriginalFilename() + "'");
-        }
-        attrs.addFlashAttribute("message", "Utilisateur ajouté avec succès"+UPLOADED_FOLDER);
-        System.out.println(UPLOADED_FOLDER + file.getOriginalFilename());
-        String pathModif = "../../../../uploads/";
-        String photo = pathModif + file.getOriginalFilename();
-
-        medecinDAO.save(medecin);
-        return new RedirectView("/modif/medecin/"+medecin.getId());
-    }
-
-    @GetMapping("/delete/temperature/{id}")
-    public RedirectView deleteTemperature(@ModelAttribute Temperature temperature, RedirectAttributes attrs) {
-        Optional<Temperature> str = temperatureDAO.findById(temperature.getId());
-        temperatureDAO.deleteById(temperature.getId());
-        attrs.addFlashAttribute("message", "Temperature supprimée avec succès");
-
-        return new RedirectView("/temperature/membre/" + str.get().getId_patient());
     }
 }

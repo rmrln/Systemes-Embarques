@@ -25,11 +25,11 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         ApiInfo apiInfo = new ApiInfo(
-                "Application name",
+                "Whatch Your Family",
                 "API description",
                 "API TOS",
                 "Terms of service",
-                new Contact("Hany Sakr", "website", "email"), "License of API", "API license URL", Collections.emptyList());
+                new Contact("EPF Roxane, Mathilde, Anto et Mika", "localhost:8080/", "mathilde.darras@epfedu.fr"), "License of API", "API license URL", Collections.emptyList());
         return apiInfo;
     }
 }
