@@ -48,7 +48,7 @@ public class SwaggerConfig {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("fr.takima.demo.rest"))
+                .apis(RequestHandlerSelectors.basePackage("fr.takima.demo.controller"))
                 .paths(PathSelectors.ant("/**"))
                 .build()
                 .apiInfo(apiInfo())

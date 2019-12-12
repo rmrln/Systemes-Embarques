@@ -1,4 +1,4 @@
-package fr.takima.demo.rest;
+package fr.takima.demo.controller.rest;
 
 import com.pi4j.platform.Platform;
 import com.pi4j.platform.PlatformManager;
