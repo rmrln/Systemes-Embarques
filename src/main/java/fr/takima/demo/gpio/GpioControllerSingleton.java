@@ -49,8 +49,8 @@ public class GpioControllerSingleton {
      * @return True if successful.
      */
     //TODO: quand rasberry co remettre ces ligne de code
-    /*public boolean provisionDigitalOutputPin(final int address, final String name) {
-        if (this.provisionedPins.containsKey(address)) {
+    public boolean provisionDigitalOutputPin(final int address, final String name) {
+        /*if (this.provisionedPins.containsKey(address)) {
             throw new IllegalArgumentException("There is already a provisioned pin at the given address");
         }
 
@@ -64,9 +64,9 @@ public class GpioControllerSingleton {
 
             return true;
         }
-
+*/
         return false;
-    }*/
+    }
 
     /**
      * Get the pin for the given address.
@@ -86,6 +86,15 @@ public class GpioControllerSingleton {
     }
 
     /**
+     * Get the list of provisioned pins.
+     *
+     * @return Map<Integer, Object>
+     */
+    public Map<Integer, Object> getProvisionedPins() {
+        return this.provisionedPins;
+    }
+
+    /**
      * Provision a GPIO as digital output pin.
      *
      * @param address The address of the GPIO pin.
@@ -94,8 +103,8 @@ public class GpioControllerSingleton {
      * @return True if successful.
      */
     //TODO: quand rasberry co remettre ces ligne de code
-    /*public boolean provisionDigitalInputPin(final int address, final String name) {
-        if (this.provisionedPins.containsKey(address)) {
+    public boolean provisionDigitalInputPin(final int address, final String name) {
+        /*if (this.provisionedPins.containsKey(address)) {
             throw new IllegalArgumentException("There is already a provisioned pin at the given address");
         }
 
@@ -106,9 +115,9 @@ public class GpioControllerSingleton {
 
             return true;
         }
-
+*/
         return false;
-    }*/
+    }
 
     /**
      * Get the state of the GPIO pin at the given address.
