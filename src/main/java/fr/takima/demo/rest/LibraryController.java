@@ -1,4 +1,4 @@
-package fr.takima.demo;
+package fr.takima.demo.rest;
 
 import fr.takima.demo.model.*;
 import fr.takima.demo.model.dao.*;

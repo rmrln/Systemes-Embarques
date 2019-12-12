@@ -1,4 +1,4 @@
-package fr.takima.demo.swagger;
+package fr.takima.demo.config;
 
 import com.fasterxml.classmate.TypeResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +48,8 @@ public class SwaggerConfig {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("fr.takima.demo"))
-                .paths(PathSelectors.ant("/api/**"))
+                .apis(RequestHandlerSelectors.basePackage("fr.takima.demo.rest"))
+                .paths(PathSelectors.ant("/**"))
                 .build()
                 .apiInfo(apiInfo())
                 .useDefaultResponseMessages(false)
