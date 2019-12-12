@@ -18,8 +18,12 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api() {
-
-        return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any()).paths(PathSelectors.ant("/**")).build().apiInfo(apiInfo()).useDefaultResponseMessages(false);
+        //System.out.println(PathSelectors.ant("/**"));
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("fr.takima.demo"))
+                .paths(PathSelectors.ant("/api/**"))
+                .build().apiInfo(apiInfo()).useDefaultResponseMessages(false);
 
     }
 
@@ -30,6 +34,7 @@ public class SwaggerConfig {
                 "API TOS",
                 "Terms of service",
                 new Contact("EPF Roxane, Mathilde, Anto et Mika", "localhost:8080/", "mathilde.darras@epfedu.fr"), "License of API", "API license URL", Collections.emptyList());
+
         return apiInfo;
     }
 }
