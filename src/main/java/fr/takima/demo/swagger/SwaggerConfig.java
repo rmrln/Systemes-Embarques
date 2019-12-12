@@ -7,22 +7,21 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.async.DeferredResult;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.builders.ResponseMessageBuilder;
+import springfox.documentation.builders.*;
 import springfox.documentation.schema.AlternateTypeRules;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.schema.WildcardType;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.service.ResponseMessage;
+import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableSwagger2
@@ -60,7 +59,10 @@ public class SwaggerConfig {
                 .alternateTypeRules(
                         AlternateTypeRules.newRule(typeResolver.resolve(DeferredResult.class,
                                 typeResolver.resolve(ResponseEntity.class, WildcardType.class)),
-                                typeResolver.resolve(WildcardType.class)));
+                                typeResolver.resolve(WildcardType.class)))
+                //.securitySchemes(Collections.singletonList(apiKey()))
+                //.securityContexts(Collections.singletonList(securityContext()))
+                ;
 
     }
 
@@ -73,19 +75,6 @@ public class SwaggerConfig {
                 new Contact("EPF Roxane, Mathilde, Anto et Mika", "localhost:8080/", "mathilde.darras@epfedu.fr"), "License of API", "API license URL", Collections.emptyList());
 
         return apiInfo;
-    }
-
-    @Bean
-    SecurityConfiguration security() {
-        return SecurityConfigurationBuilder.builder()//<19>
-                .clientId("test-app-client-id")
-                .clientSecret("test-app-client-secret")
-                .realm("test-app-realm")
-                .appName("test-app")
-                .scopeSeparator(",")
-                .additionalQueryStringParams(null)
-                .useBasicAuthenticationWithAccessCodeGrant(false)
-                .build();
     }
 
     @Bean
@@ -107,4 +96,39 @@ public class SwaggerConfig {
                 .validatorUrl(null)
                 .build();
     }
+
+    //for security
+
+    /*@Bean
+    SecurityConfiguration security() {
+        return SecurityConfigurationBuilder.builder()//<19>
+                .clientId("test-app-client-id")
+                .clientSecret("test-app-client-secret")
+                .realm("test-app-realm")
+                .appName("test-app")
+                .scopeSeparator(",")
+                .additionalQueryStringParams(null)
+                .useBasicAuthenticationWithAccessCodeGrant(false)
+                .build();
+    }
+
+    private ApiKey apiKey() {
+        return new ApiKey("mykey", "api_key", "header");//<16>
+    }
+
+    private SecurityContext securityContext() {
+        return SecurityContext.builder()
+                .securityReferences(defaultAuth())
+                .forPaths(PathSelectors.regex("/anyPath.*"))//<17>
+                .build();
+    }
+
+    List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope
+                = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        return Collections.singletonList(
+                new SecurityReference("mykey", authorizationScopes));//<18>
+    }*/
 }
