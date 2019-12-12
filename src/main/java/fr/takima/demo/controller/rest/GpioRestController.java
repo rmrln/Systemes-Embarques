@@ -115,6 +115,7 @@ public class GpioRestController implements ApplicationContextAware {
      *
      * @return True if successful.
      */
+
     @PostMapping(path = "digital/state/{address}/{value}", produces = "application/json")
     public String setPinDigitalState(@PathVariable("address") long address, @PathVariable("value") long value) {
         try {
