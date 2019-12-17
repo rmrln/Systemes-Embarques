@@ -20,7 +20,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand navTitle" href="/index">Watch your family</a>
+    <a class="navbar-brand navTitle" href="/api">Watch your family</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,13 +28,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/index">Accueil </a>
+                <a class="nav-link" href="/api">Accueil </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/medecin">Médecin <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/api/medecin">Médecin <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/famille">Famille </a>
+                <a class="nav-link" href="/api/famille">Famille </a>
             </li>
         </ul>
     </div>
@@ -47,14 +47,14 @@
         <div class="col">
             <div class="wrapper">
                 <canvas id="temperaturesChart"></canvas>
-                <a th:href="'/temperature/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des températures</a>
+                <a th:href="'/api/temperature/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des températures</a>
             </div>
         </div>
         <div class="col">
             <div class="wrapper">
                 <canvas id="respirationsChart"></canvas>
 
-                <a th:href="'/respiration/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des respirations</a>
+                <a th:href="'/api/respiration/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des respirations</a>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
         <div class="col">
             <div class="wrapper">
                 <canvas id="positionsChart"></canvas>
-                <a th:href="'/position/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des positions</a>
+                <a th:href="'/api/position/membre/' + ${IdMember}" class="btn btn-light float-right">Tableau des positions</a>
             </div>
         </div>
         <div class="col">
@@ -74,7 +74,7 @@
 </div>
 
 </body>
-<!-- Ficher .js pour les graphiques de données -->
+<!-- Ficher .js pour les graphiques de données -->0
 <!--<script src="/js/graphiquesChartMedecin.js"></script>-->
 <script th:inline="javascript">
     //Temperature Chart
@@ -270,9 +270,6 @@
         data: data_random,
         options: options_random
     });
-
-
-
 </script>
 
 <script th:src="@{/js/jquery.min.js}"></script>
