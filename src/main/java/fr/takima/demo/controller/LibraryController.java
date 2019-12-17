@@ -1,7 +1,7 @@
 package fr.takima.demo.controller;
 
-import fr.takima.demo.model.*;
-import fr.takima.demo.model.dao.*;
+//import fr.takima.demo.model.*;
+//import fr.takima.demo.model.dao.*;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,19 +16,19 @@ import java.util.*;
 @Controller
 public class LibraryController {
 
-    private final PatientDAO patientDAO;
+    /*private final PatientDAO patientDAO;
     //private final MedecinDAO medecinDAO;
     private final TemperatureDAO temperatureDAO;
     private final PositionDAO positionDAO;
-    private final RespirationDAO respirationDAO;
+    private final RespirationDAO respirationDAO;*/
 
-    public LibraryController(PatientDAO patientDAO, /*MedecinDAO medecinDAO,*/ TemperatureDAO temperatureDAO, PositionDAO positionDAO, RespirationDAO respirationDAO) {
+    public LibraryController(/*PatientDAO patientDAO, *//*MedecinDAO medecinDAO,*/ /*TemperatureDAO temperatureDAO, PositionDAO positionDAO, RespirationDAO respirationDAO*/) {
 
-        this.patientDAO = patientDAO;
+        /*this.patientDAO = patientDAO;
         //this.medecinDAO = medecinDAO;
         this.temperatureDAO = temperatureDAO;
         this.positionDAO = positionDAO;
-        this.respirationDAO = respirationDAO;
+        this.respirationDAO = respirationDAO;*/
     }
 
     @GetMapping
@@ -38,7 +38,7 @@ public class LibraryController {
 
     @GetMapping("/medecin")
     public String medecinPage(Model m){
-        m.addAttribute("membres", patientDAO.findAll());
+       // m.addAttribute("membres", patientDAO.findAll());
         return "medecin";
     }
 
@@ -50,7 +50,7 @@ public class LibraryController {
 
     @GetMapping("/temperature/membre/{id}")
     public String consultTemperatures(Model m,@PathVariable Long id) {
-        Iterable<Temperature> str = temperatureDAO.findAll();
+        /*Iterable<Temperature> str = temperatureDAO.findAll();
         ArrayList<Temperature> all_temperatures = new ArrayList<>();
         str.forEach(all_temperatures::add);
         ArrayList<Temperature> temperatures = new ArrayList<>();
@@ -61,7 +61,7 @@ public class LibraryController {
         }
 
         m.addAttribute("data",temperatures);
-        m.addAttribute("labelData", "Température");
+        m.addAttribute("labelData", "Température");*/
         return "dataTableau";
     }
 
@@ -69,7 +69,7 @@ public class LibraryController {
     public String consultPatient(Model m,@PathVariable Long id) {
         //Temperature
         //get all the temperatures in de DB
-        Iterable<Temperature> str = temperatureDAO.findAll();
+        /*Iterable<Temperature> str = temperatureDAO.findAll();
         ArrayList<Temperature> all_temperatures = new ArrayList<>();
         str.forEach(all_temperatures::add);
 
@@ -172,13 +172,13 @@ public class LibraryController {
         m.addAttribute("borderColorPositions",borderColorPositions);
         m.addAttribute("sizePointPositions",sizePointPositions);
 
-        m.addAttribute("IdMember", id);
+        m.addAttribute("IdMember", id);*/
         return "dataPatient";
     }
 
     @GetMapping("/position/membre/{id}")
     public String consultPosition(Model m,@PathVariable Long id) {
-        Iterable<Position> str = positionDAO.findAll();
+        /*Iterable<Position> str = positionDAO.findAll();
         ArrayList<Position> all_positions = new ArrayList<>();
         str.forEach(all_positions::add);
         ArrayList<Position> positionsPatient = new ArrayList<>();
@@ -189,13 +189,13 @@ public class LibraryController {
         }
 
         m.addAttribute("data",positionsPatient);
-        m.addAttribute("labelData", "Position");
+        m.addAttribute("labelData", "Position");*/
         return "dataTableau";
     }
 
     @GetMapping("/respiration/membre/{id}")
     public String consultRespiration(Model m,@PathVariable Long id) {
-        Iterable<Respiration> str = respirationDAO.findAll();
+        /*Iterable<Respiration> str = respirationDAO.findAll();
         ArrayList<Respiration> all_respirations = new ArrayList<>();
         str.forEach(all_respirations::add);
         ArrayList<Respiration> respirationsPatient = new ArrayList<>();
@@ -206,7 +206,7 @@ public class LibraryController {
         }
 
         m.addAttribute("data",respirationsPatient);
-        m.addAttribute("labelData", "Flue d'aire");
+        m.addAttribute("labelData", "Flue d'aire");*/
         return "dataTableau";
     }
 }
