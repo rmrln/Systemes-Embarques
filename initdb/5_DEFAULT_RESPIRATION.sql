@@ -1,0 +1,14 @@
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:20', 20);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:22', 25);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:24', 30);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:26', 20);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:28', 25);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:30', 30);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:32', 25);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:34', 20);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:34', 20);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:34', 20);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:34', 20);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:34', 20);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:34', 20);
+INSERT INTO defaultdb.respiration(date, respiration) VALUES ('03/11/2019 15:50:34', 20);

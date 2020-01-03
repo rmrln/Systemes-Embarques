@@ -19,7 +19,7 @@ public class GpioControllerSingleton {
      * The GPIO controller.
      */
     //TODO: quand rasberry co remettre cette ligne de code
-    private final GpioController gpio;
+    //private final GpioController gpio;
 
     /**
      * List of the provisioned pins with the address as key.
@@ -31,7 +31,7 @@ public class GpioControllerSingleton {
      */
     public GpioControllerSingleton() {
         //TODO: quand rasberry co remettre cette ligne de code
-        this.gpio = GpioFactory.getInstance();
+        //this.gpio = GpioFactory.getInstance();
     }
 
     //...
@@ -46,7 +46,7 @@ public class GpioControllerSingleton {
      */
     //TODO: quand rasberry co remettre ces ligne de code
     public boolean provisionDigitalOutputPin(final int address, final String name) {
-        if (this.provisionedPins.containsKey(address)) {
+       /* if (this.provisionedPins.containsKey(address)) {
             throw new IllegalArgumentException("There is already a provisioned pin at the given address");
         }
 
@@ -59,7 +59,7 @@ public class GpioControllerSingleton {
             this.provisionedPins.put(address, provisionedPin);
 
             return true;
-        }
+        }*/
 
         return false;
     }
@@ -100,7 +100,7 @@ public class GpioControllerSingleton {
      */
     //TODO: quand rasberry co remettre ces ligne de code
     public boolean provisionDigitalInputPin(final int address, final String name) {
-        if (this.provisionedPins.containsKey(address)) {
+        /*if (this.provisionedPins.containsKey(address)) {
             throw new IllegalArgumentException("There is already a provisioned pin at the given address");
         }
 
@@ -110,7 +110,7 @@ public class GpioControllerSingleton {
             this.provisionedPins.put(address, provisionedPin);
 
             return true;
-        }
+        }*/
 
         return false;
     }
