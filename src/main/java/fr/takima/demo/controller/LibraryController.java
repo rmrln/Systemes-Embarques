@@ -30,6 +30,8 @@ public class LibraryController {
     private final PositionService positionService;
     private final RespirationService respirationService;
 
+    private final String RASBERRYPI_LOCALHOST = "192.168.43.173";
+
     public LibraryController(TemperatureDAO temperatureDAO,
                              PositionDAO positionDAO,
                              RespirationDAO respirationDAO,
@@ -63,7 +65,8 @@ public class LibraryController {
 
     @GetMapping("/temperature/membre/")
     public String consultTemperatures(Model m) {
-        getTemperatures_RasberryPi();
+        //TODO: Quand RasberryPi connecté decommanter ça :
+        //getTemperatures_RasberryPi();
         Iterable<Temperature> str = temperatureDAO.findAll();
         ArrayList<Temperature> all_temperatures = new ArrayList<>();
         str.forEach(all_temperatures::add);
@@ -82,7 +85,8 @@ public class LibraryController {
     @GetMapping("/dataPatient/membre/")
     public String consultPatient(Model m) {
         //Temperature
-        getTemperatures_RasberryPi();
+        //TODO: Quand RasberryPi connecté decommanter ça :
+        //getTemperatures_RasberryPi();
         //get all the temperatures in de DB
         Iterable<Temperature> str = temperatureDAO.findAll();
         ArrayList<Temperature> all_temperatures = new ArrayList<>();
@@ -122,7 +126,8 @@ public class LibraryController {
         m.addAttribute("sizePointTemperatures",sizePointTemperature);
 
         //Respirations
-        getAllRespiration_RasberryPi();
+        //TODO: Quand RasberryPi connecté decommanter ça :
+        //getAllRespiration_RasberryPi();
         //get all the respirations in de DB
         Iterable<Respiration> str_respiration = respirationDAO.findAll();
         ArrayList<Respiration> all_respirations = new ArrayList<>();
@@ -151,7 +156,8 @@ public class LibraryController {
         m.addAttribute("sizePointRespirations",sizePointRespirations);
 
         // Positions
-        getAllPosition_RasberryPi();
+        //TODO: Quand RasberryPi connecté decommanter ça :
+        //getAllPosition_RasberryPi();
         //get all the positions in de DB
         Iterable<Position> str_position = positionDAO.findAll();
         ArrayList<Position> all_positions = new ArrayList<>();
@@ -196,7 +202,7 @@ public class LibraryController {
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<Temperature>> typeReference = new TypeReference<List<Temperature>>(){};
         try {
-            URL url = new URL("http://192.168.43.173:8080/db/temperatures");
+            URL url = new URL("http://" + RASBERRYPI_LOCALHOST + ":8080/db/temperatures");
             List<Temperature> temperatures = mapper.readValue(url,typeReference);
             temperatureService.deleteAll();
             temperatureService.save(temperatures);
@@ -208,7 +214,8 @@ public class LibraryController {
 
     @GetMapping("/position/membre/")
     public String consultPosition(Model m) {
-        getAllPosition_RasberryPi();
+        //TODO: Quand RasberryPi connecté decommanter ça :
+        //getAllPosition_RasberryPi();
         Iterable<Position> str = positionDAO.findAll();
         ArrayList<Position> all_positions = new ArrayList<>();
         str.forEach(all_positions::add);
@@ -227,7 +234,7 @@ public class LibraryController {
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<Position>> typeReference = new TypeReference<List<Position>>(){};
         try {
-            URL url = new URL("http://192.168.43.173:8080/db/positions");
+            URL url = new URL("http://" + RASBERRYPI_LOCALHOST + ":8080/db/positions");
             List<Position> positions = mapper.readValue(url,typeReference);
             positionService.deleteAll();
             positionService.save(positions);
@@ -240,7 +247,8 @@ public class LibraryController {
 
     @GetMapping("/respiration/membre/")
     public String consultRespiration(Model m) {
-        getAllRespiration_RasberryPi();
+        //TODO: Quand RasberryPi connecté decommanter ça :
+        //getAllRespiration_RasberryPi();
         Iterable<Respiration> str = respirationDAO.findAll();
         ArrayList<Respiration> all_respirations = new ArrayList<>();
         str.forEach(all_respirations::add);
@@ -259,7 +267,7 @@ public class LibraryController {
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<Respiration> typeReference = new TypeReference<Respiration>(){};
         try {
-            URL url = new URL("http://192.168.43.173:8080/db/lastrespiration");
+            URL url = new URL("http://" + RASBERRYPI_LOCALHOST + ":8080/db/lastrespiration");
             Respiration respiration = mapper.readValue(url,typeReference);
             respirationService.save(respiration);
             System.out.println("One respiration Saved!");
@@ -273,7 +281,7 @@ public class LibraryController {
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<List<Respiration>> typeReference = new TypeReference<List<Respiration>>(){};
         try {
-            URL url = new URL("http://192.168.43.173:8080/db/respirations");
+            URL url = new URL("http://" + RASBERRYPI_LOCALHOST + ":8080/db/respirations");
             List<Respiration> respirations = mapper.readValue(url,typeReference);
             respirationService.deleteAll();
             respirationService.save(respirations);
