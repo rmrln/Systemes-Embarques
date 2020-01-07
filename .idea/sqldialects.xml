@@ -6,5 +6,6 @@
     <file url="file://$PROJECT_DIR$/initdb/3_DEFAULT_TEMPERATURES.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/initdb/4_DEFAULT_POSITIONS.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/initdb/5_DEFAULT_RESPIRATION.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/initdb/Drop.sql" dialect="MariaDB" />
   </component>
 </project>

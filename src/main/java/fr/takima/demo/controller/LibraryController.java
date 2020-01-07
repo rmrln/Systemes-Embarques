@@ -2,6 +2,7 @@ package fr.takima.demo.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.xml.bind.v2.TODO;
 import fr.takima.demo.model.*;
 import fr.takima.demo.model.dao.*;
 import fr.takima.demo.service.PositionService;
@@ -30,8 +31,8 @@ public class LibraryController {
     private final PositionService positionService;
     private final RespirationService respirationService;
 
-    //TODO : Changer l'adresse de la rasberry Pi pour se connecter
-    private final String RASBERRYPI_LOCALHOST = "192.168.43.173";
+    // TODO : Changer l'adresse de la rasberry Pi pour se connecter
+    private final String RASBERRYPI_LOCALHOST = "172.20.10.4";
 
     public LibraryController(TemperatureDAO temperatureDAO,
                              PositionDAO positionDAO,
@@ -67,7 +68,7 @@ public class LibraryController {
     @GetMapping("/temperature/membre/")
     public String consultTemperatures(Model m) {
         //TODO: Quand RasberryPi connecté decommanter ça :
-        //getTemperatures_RasberryPi();
+        getTemperatures_RasberryPi();
         Iterable<Temperature> str = temperatureDAO.findAll();
         ArrayList<Temperature> all_temperatures = new ArrayList<>();
         str.forEach(all_temperatures::add);
@@ -87,7 +88,7 @@ public class LibraryController {
     public String consultPatient(Model m) {
         //Temperature
         //TODO: Quand RasberryPi connecté decommanter ça :
-        //getTemperatures_RasberryPi();
+        getTemperatures_RasberryPi();
         //get all the temperatures in de DB
         Iterable<Temperature> str = temperatureDAO.findAll();
         ArrayList<Temperature> all_temperatures = new ArrayList<>();
@@ -96,7 +97,9 @@ public class LibraryController {
         //get the temperature of the patient with id
         ArrayList<Temperature> temperatureArrayList = new ArrayList<>();
         for( int i=0; i< all_temperatures.size(); i++){
-                temperatureArrayList.add(all_temperatures.get(i));
+                if (all_temperatures.get(i).getTemperature()>= 35){
+                    temperatureArrayList.add(all_temperatures.get(i));
+                }
         }
         double[] temperaturesTable = new double[temperatureArrayList.size()];
         int temperatureAverage;
@@ -128,7 +131,7 @@ public class LibraryController {
 
         //Respirations
         //TODO: Quand RasberryPi connecté decommanter ça :
-        //getAllRespiration_RasberryPi();
+        getAllRespiration_RasberryPi();
         //get all the respirations in de DB
         Iterable<Respiration> str_respiration = respirationDAO.findAll();
         ArrayList<Respiration> all_respirations = new ArrayList<>();
@@ -158,7 +161,7 @@ public class LibraryController {
 
         // Positions
         //TODO: Quand RasberryPi connecté decommanter ça :
-        //getAllPosition_RasberryPi();
+        getAllPosition_RasberryPi();
         //get all the positions in de DB
         Iterable<Position> str_position = positionDAO.findAll();
         ArrayList<Position> all_positions = new ArrayList<>();
@@ -216,7 +219,7 @@ public class LibraryController {
     @GetMapping("/position/membre/")
     public String consultPosition(Model m) {
         //TODO: Quand RasberryPi connecté decommanter ça :
-        //getAllPosition_RasberryPi();
+        getAllPosition_RasberryPi();
         Iterable<Position> str = positionDAO.findAll();
         ArrayList<Position> all_positions = new ArrayList<>();
         str.forEach(all_positions::add);
@@ -249,7 +252,7 @@ public class LibraryController {
     @GetMapping("/respiration/membre/")
     public String consultRespiration(Model m) {
         //TODO: Quand RasberryPi connecté decommanter ça :
-        //getAllRespiration_RasberryPi();
+        getAllRespiration_RasberryPi();
         Iterable<Respiration> str = respirationDAO.findAll();
         ArrayList<Respiration> all_respirations = new ArrayList<>();
         str.forEach(all_respirations::add);
