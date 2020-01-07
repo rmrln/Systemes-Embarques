@@ -56,13 +56,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="membreFamille : ${membres}">
-                <td scope="row" th:text="${membreFamille.firstName}"></td>
-                <td th:text="${membreFamille.lastName}"></td>
-                <td th:text="${membreFamille.age}"></td>
+            <tr>
+                <td scope="row" th:text="Dupont"></td>
+                <td th:text="Paul"></td>
+                <td th:text="18"></td>
                 <td align="center">
                     <!--<a th:href="'/modif/membre/' + ${membreFamille.id}" class="btn btn-primary">Modifier</a>-->
-                    <a th:href="'/api/dataPatient/membre/' + ${membreFamille.id}" class="btn btn-light">Consulter fiche patient</a>
+                    <a href="/api/dataPatient/membre/" class="btn btn-light">Consulter fiche patient</a>
                 </td>
             </tr>
             </tbody>

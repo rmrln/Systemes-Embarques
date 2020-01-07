@@ -8,9 +8,6 @@ public class Position {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "id_patient")
-    private  long id_patient;
-
     @Column(name = "position")
     private  int position;
 
@@ -23,14 +20,6 @@ public class Position {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getId_patient() {
-        return id_patient;
-    }
-
-    public void setId_patient(long id_patient) {
-        this.id_patient = id_patient;
     }
 
     public int getPosition() {
