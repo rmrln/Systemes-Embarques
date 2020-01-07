@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://fontawesome.com/v4.7.0/assets/font-awesome/css/font-awesome.css">
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 </head>
@@ -29,11 +29,11 @@
                 <a class="nav-link" href="/api">Accueil </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/api/medecin">Médecin  <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/api/medecin">Suivre mes patients <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
+            <!--<li class="nav-item active">
                 <a class="nav-link" href="/api/famille">Famille </a>
-            </li>
+            </li>-->
         </ul>
     </div>
 </nav>
@@ -53,9 +53,9 @@
             <tr th:each="temperature : ${data}">
                 <td scope="row" th:text="${temperature.date}"></td>
                 <td th:text="${temperature.getData()}"></td>
-                <td align="center">
-                    <!--<a th:href="'/api/delete/temperature/' + ${temperature.id}" class="btn btn-danger">Delete</a>-->
-                </td>
+                <!--<td align="center">
+                    <a th:href="'/api/delete/temperature/' + ${temperature.id}" class="btn btn-danger">Delete</a>
+                </td>-->
             </tr>
             </tbody>
         </table>

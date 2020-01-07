@@ -94,13 +94,17 @@ public class LibraryController {
                 temperatureArrayList.add(all_temperatures.get(i));
         }
         double[] temperaturesTable = new double[temperatureArrayList.size()];
-        String[] dateTempertaureTable = new String[temperatureArrayList.size()];
+        int temperatureAverage;
+        int somme = 0;
+        String[] dateTemperatureTable = new String[temperatureArrayList.size()];
         String[] borderColorTemperatures = new String[temperatureArrayList.size()];
         double[] sizePointTemperature = new double[temperatureArrayList.size()];
         for( int i=0; i< temperatureArrayList.size(); i++){
 
+
             temperaturesTable[i] = temperatureArrayList.get(i).getTemperature();
-            dateTempertaureTable[i] = temperatureArrayList.get(i).getDate();
+            somme += temperaturesTable[i];
+            dateTemperatureTable[i] = temperatureArrayList.get(i).getDate();
             if(temperatureArrayList.get(i).getTemperature()>37.5){
                 borderColorTemperatures[i] = "rgba(54, 162, 235, 1)";
                 sizePointTemperature[i] = 7;
@@ -109,9 +113,11 @@ public class LibraryController {
                 sizePointTemperature[i] = 4;
             }
         }
+        temperatureAverage = (somme / temperatureArrayList.size());
 
+        m.addAttribute("temperatureAverage", temperatureAverage);
         m.addAttribute("temperatures",temperaturesTable);
-        m.addAttribute("datesTemperatures",dateTempertaureTable);
+        m.addAttribute("datesTemperatures",dateTemperatureTable);
         m.addAttribute("borderColorTemperatures",borderColorTemperatures);
         m.addAttribute("sizePointTemperatures",sizePointTemperature);
 
@@ -244,7 +250,7 @@ public class LibraryController {
         }
 
         m.addAttribute("data",respirationsPatient);
-        m.addAttribute("labelData", "Flue d'aire");
+        m.addAttribute("labelData", "Flux d'air");
         return "dataTableau";
     }
 

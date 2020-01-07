@@ -1,5 +1,12 @@
 fr\takima\demo\Application.class
 fr\takima\demo\config\WebConfig.class
+<<<<<<< HEAD
+=======
+fr\takima\demo\controller\rest\InfoRestController.class
+fr\takima\demo\model\dao\PatientDAO.class
+fr\takima\demo\model\Medecin.class
+fr\takima\demo\model\Patient.class
+>>>>>>> master
 fr\takima\demo\model\Position.class
 fr\takima\demo\controller\LibraryController.class
 fr\takima\demo\model\dao\PositionDAO.class
@@ -8,6 +15,11 @@ fr\takima\demo\model\dao\TemperatureDAO.class
 fr\takima\demo\Application$1.class
 fr\takima\demo\service\TemperatureService.class
 fr\takima\demo\GlobalExceptionHandler.class
+<<<<<<< HEAD
+=======
+fr\takima\demo\model\dao\MedecinDAO.class
+>>>>>>> master
 fr\takima\demo\config\SwaggerConfig.class
 fr\takima\demo\model\Respiration.class
+fr\takima\demo\gpio\GpioControllerSingleton.class
 fr\takima\demo\model\Temperature.class
