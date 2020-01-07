@@ -75,8 +75,9 @@ public class LibraryController {
         ArrayList<Temperature> temperatures = new ArrayList<>();
         for( int i=0; i< all_temperatures.size(); i++){
 
+            if (all_temperatures.get(i).getTemperature()>= 35){
                 temperatures.add(all_temperatures.get(i));
-
+            }
         }
 
         m.addAttribute("data",temperatures);
