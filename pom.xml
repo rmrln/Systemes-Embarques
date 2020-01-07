@@ -76,6 +76,11 @@
       <scope>compile</scope>
     </dependency>
 
+    <!-- Dependance json -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
 
     <!-- Apache Commons FileUpload -->
     <dependency>

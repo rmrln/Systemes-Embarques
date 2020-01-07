@@ -1,17 +1,1 @@
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\config\WebMvcConfig.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\controller\LibraryController.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\model\Respiration.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\model\dao\PositionDAO.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\controller\rest\InfoRestController.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\model\Temperature.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\GlobalExceptionHandler.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\model\dao\TemperatureDAO.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\config\SwaggerConfig.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\model\Position.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\model\Patient.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\model\dao\PatientDAO.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\model\Medecin.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\gpio\GpioControllerSingleton.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\Application.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\model\dao\RespirationDAO.java
-C:\Users\roxan\Desktop\EPF-5ème année\Systèmes embarqués pour la santé\Systemes-Embarques\src\main\java\fr\takima\demo\model\dao\MedecinDAO.java
+

@@ -9,11 +9,8 @@ public class Respiration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "id_patient")
-    private  long id_patient;
-
     @Column(name = "airflow")
-    private  int airflow;
+    private  int respiration;
 
     @Column(name = "date")
     private  String date;
@@ -26,20 +23,12 @@ public class Respiration {
         this.id = id;
     }
 
-    public long getId_patient() {
-        return id_patient;
+    public int getRespiration() {
+        return respiration;
     }
 
-    public void setId_patient(long id_patient) {
-        this.id_patient = id_patient;
-    }
-
-    public int getAirflow() {
-        return airflow;
-    }
-
-    public void setAirflow(int airflow) {
-        this.airflow = airflow;
+    public void setRespiration(int respiration) {
+        this.respiration = respiration;
     }
 
     public String getDate() {
@@ -51,6 +40,6 @@ public class Respiration {
     }
 
     public String getData(){
-        return "" + airflow;
+        return "" + respiration;
     }
 }
