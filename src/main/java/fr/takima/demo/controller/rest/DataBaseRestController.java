@@ -39,15 +39,28 @@ public class DataBaseRestController {
         Iterable<Temperature> str = temperatureDAO.findAll();
         ArrayList<Temperature> all_temperatures = new ArrayList<>();
         str.forEach(all_temperatures::add);
-        for( int i=0; i< all_temperatures.size(); i++){
-            Map<String, String> map = new TreeMap<>();
-            map.put("date",all_temperatures.get(i).getDate());
-            map.put("temperature", all_temperatures.get(i).getTemperature() + "");
-            temperatures.add(map);
+        if(all_temperatures.size()>30){
+            for( int i=all_temperatures.size()-30; i< all_temperatures.size(); i++){
+                Map<String, String> map = new TreeMap<>();
+                map.put("date",all_temperatures.get(i).getDate());
+                map.put("temperature", all_temperatures.get(i).getTemperature() + "");
+                temperatures.add(map);
+            }
         }
-
+        else {
+            for( int i=0; i< all_temperatures.size(); i++){
+                Map<String, String> map = new TreeMap<>();
+                map.put("date",all_temperatures.get(i).getDate());
+                map.put("temperature", all_temperatures.get(i).getTemperature() + "");
+                temperatures.add(map);
+            }
+        }
+        
         return temperatures;
     }
+
+
+
 
     //Get position
     @GetMapping(path = "positions", produces = "application/json")
@@ -57,13 +70,22 @@ public class DataBaseRestController {
         Iterable<Position> str = positionDAO.findAll();
         ArrayList<Position> all_positions = new ArrayList<>();
         str.forEach(all_positions::add);
-        for( int i=0; i< all_positions.size(); i++){
-            Map<String, String> map = new TreeMap<>();
-            map.put("date",all_positions.get(i).getDate());
-            map.put("position", all_positions.get(i).getPosition() + "");
-            positions.add(map);
+        if (all_positions.size()>30) {
+            for( int i=all_positions.size()-30; i< all_positions.size(); i++){
+                Map<String, String> map = new TreeMap<>();
+                map.put("date",all_positions.get(i).getDate());
+                map.put("position", all_positions.get(i).getPosition() + "");
+                positions.add(map);
+            }
         }
-
+        else {
+            for( int i=0; i< all_positions.size(); i++){
+                Map<String, String> map = new TreeMap<>();
+                map.put("date",all_positions.get(i).getDate());
+                map.put("position", all_positions.get(i).getPosition() + "");
+                positions.add(map);
+            }
+        }
         return positions;
     }
 
