@@ -17,15 +17,13 @@ import java.util.*;
 public class LibraryController {
 
     private final PatientDAO patientDAO;
-    //private final MedecinDAO medecinDAO;
     private final TemperatureDAO temperatureDAO;
     private final PositionDAO positionDAO;
     private final RespirationDAO respirationDAO;
 
-    public LibraryController(PatientDAO patientDAO, /*MedecinDAO medecinDAO,*/ TemperatureDAO temperatureDAO, PositionDAO positionDAO, RespirationDAO respirationDAO) {
+    public LibraryController(PatientDAO patientDAO, TemperatureDAO temperatureDAO, PositionDAO positionDAO, RespirationDAO respirationDAO) {
 
         this.patientDAO = patientDAO;
-        //this.medecinDAO = medecinDAO;
         this.temperatureDAO = temperatureDAO;
         this.positionDAO = positionDAO;
         this.respirationDAO = respirationDAO;
