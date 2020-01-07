@@ -67,9 +67,9 @@ public class DataBaseRestController {
         return positions;
     }
 
-    //Get respiration
+    //Get all respiration
     @GetMapping(path = "respirations", produces = "application/json")
-    /*public List<Map<String,String>> getRespiration() {
+    public List<Map<String,String>> getRespiration() {
         List<Map<String, String>> respirations = new ArrayList<>();
 
         Iterable<Respiration> str = respirationDAO.findAll();
@@ -83,13 +83,15 @@ public class DataBaseRestController {
         }
 
         return respirations;
-    }*/
-    public Map<String,String> getRespiration() {
+    }
 
+    //Get 1 respiration
+    @GetMapping(path = "lastrespiration", produces = "application/json")
+    public Map<String,String> getLastRespiration() {
         Iterable<Respiration> str = respirationDAO.findAll();
         ArrayList<Respiration> all_respirations = new ArrayList<>();
         str.forEach(all_respirations::add);
-        
+
         Map<String, String> map = new TreeMap<>();
         map.put("date",all_respirations.get(all_respirations.size()-1).getDate());
         map.put("respiration", all_respirations.get(all_respirations.size()-1).getAirflow() + "");
