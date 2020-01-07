@@ -4,8 +4,10 @@ import javax.persistence.*;
 
 @Entity(name = "position")
 public class Position {
-    @Column(name="position_id")
-    private long id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long position_id;
 
     @Column(name = "position")
     private  int position;

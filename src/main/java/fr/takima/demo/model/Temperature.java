@@ -5,8 +5,9 @@ import javax.persistence.*;
 @Entity(name = "temperature")
 public class Temperature {
 
-    @Column(name="temperature_id")
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long temperature_id;
 
     @Column(name = "temperature")
     private  double temperature;
