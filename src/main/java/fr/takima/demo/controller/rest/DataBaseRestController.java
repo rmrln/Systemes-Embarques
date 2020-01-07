@@ -60,7 +60,7 @@ public class DataBaseRestController {
         for( int i=0; i< all_positions.size(); i++){
             Map<String, String> map = new TreeMap<>();
             map.put("date",all_positions.get(i).getDate());
-            map.put("temperature", all_positions.get(i).getPosition() + "");
+            map.put("position", all_positions.get(i).getPosition() + "");
             positions.add(map);
         }
 
@@ -78,7 +78,7 @@ public class DataBaseRestController {
         for( int i=0; i< all_respirations.size(); i++){
             Map<String, String> map = new TreeMap<>();
             map.put("date",all_respirations.get(i).getDate());
-            map.put("temperature", all_respirations.get(i).getAirflow() + "");
+            map.put("respiration", all_respirations.get(i).getAirflow() + "");
             respirations.add(map);
         }
 
