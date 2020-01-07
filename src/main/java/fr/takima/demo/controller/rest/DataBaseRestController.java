@@ -1,5 +1,7 @@
 package fr.takima.demo.controller.rest;
 
+import fr.takima.demo.model.Position;
+import fr.takima.demo.model.Respiration;
 import fr.takima.demo.model.Temperature;
 import fr.takima.demo.model.dao.PositionDAO;
 import fr.takima.demo.model.dao.RespirationDAO;
@@ -46,4 +48,41 @@ public class DataBaseRestController {
 
         return temperatures;
     }
+
+    //Get position
+    @GetMapping(path = "positions", produces = "application/json")
+    public List<Map<String,String>> getPositions() {
+        List<Map<String, String>> positions = new ArrayList<>();
+
+        Iterable<Position> str = positionDAO.findAll();
+        ArrayList<Position> all_positions = new ArrayList<>();
+        str.forEach(all_positions::add);
+        for( int i=0; i< all_positions.size(); i++){
+            Map<String, String> map = new TreeMap<>();
+            map.put("date",all_positions.get(i).getDate());
+            map.put("temperature", all_positions.get(i).getPosition() + "");
+            positions.add(map);
+        }
+
+        return positions;
+    }
+
+    //Get respiration
+    @GetMapping(path = "respirations", produces = "application/json")
+    public List<Map<String,String>> getRespiration() {
+        List<Map<String, String>> respirations = new ArrayList<>();
+
+        Iterable<Respiration> str = respirationDAO.findAll();
+        ArrayList<Respiration> all_respirations = new ArrayList<>();
+        str.forEach(all_respirations::add);
+        for( int i=0; i< all_respirations.size(); i++){
+            Map<String, String> map = new TreeMap<>();
+            map.put("date",all_respirations.get(i).getDate());
+            map.put("temperature", all_respirations.get(i).getAirflow() + "");
+            respirations.add(map);
+        }
+
+        return respirations;
+    }
+
 }
