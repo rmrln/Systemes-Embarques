@@ -210,7 +210,7 @@ public class LibraryController {
         }
 
         m.addAttribute("data",respirationsPatient);
-        m.addAttribute("labelData", "Flue d'aire");
+        m.addAttribute("labelData", "Flux d'air");
         return "dataTableau";
     }
 }
