@@ -9,12 +9,12 @@ public class Respiration {
     private long respiration_id;
 
     @Column(name = "respiration")
-    private  double respiration;
+    private  int respiration;
 
     @Column(name = "date")
     private  String date;
 
-    public double getAirflow() {
+    public int getAirflow() {
         return respiration;
     }
 
