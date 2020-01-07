@@ -4,8 +4,7 @@ import javax.persistence.*;
 
 @Entity(name = "respiration")
 public class Respiration {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="respiration_id")
     private long id;
 
     @Column(name = "respiration")
