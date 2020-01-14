@@ -97,8 +97,8 @@ public class DataBaseRestController {
         Iterable<Respiration> str = respirationDAO.findAll();
         ArrayList<Respiration> all_respirations = new ArrayList<>();
         str.forEach(all_respirations::add);
-        if (all_respirations.size()>30) {
-            for( int i=all_respirations.size()-30; i< all_respirations.size(); i++){
+        if (all_respirations.size()>100) {
+            for( int i=all_respirations.size()-100; i< all_respirations.size(); i++){
                 Map<String, String> map = new TreeMap<>();
                 map.put("date",all_respirations.get(i).getDate());
                 map.put("respiration", all_respirations.get(i).getAirflow() + "");
