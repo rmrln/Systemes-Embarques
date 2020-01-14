@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Watch your family</title>
+    <title>Watch your patients</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -19,7 +19,7 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand navTitle" href="/api">Watch your family</a>
+    <a class="navbar-brand navTitle" href="/api">Watch your patients</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -74,7 +74,7 @@
         </div>
         <div class="col">
             <div class="wrapper">
-                <canvas id="randomChart"></canvas>
+                
             </div>
         </div>
     </div>
@@ -218,65 +218,6 @@
         options: options_positions
     });
 
-    // test graphique live avec valeurs randoms
-    function generateRandomNumber() {
-        var min = 36.4;
-        var max = 41.5;
-        return Math.random() * (max - min) + min;
-    }
-
-    function onRefresh(chart) {
-        chart.config.data.datasets.forEach(function(dataset) {
-            dataset.data.push({
-                x: Date.now(),
-                y: generateRandomNumber()
-            });
-        });
-    }
-
-    var data_random = {
-        datasets: [{
-            label: 'Graph random live',
-            borderColor: borderColorPositions,
-            pointRadius: sizePointPositions,
-            fill: false,
-            data: []
-        }]
-    };
-
-    var options_random = {
-        scales: {
-            xAxes: [{
-                type: 'realtime',
-                realtime: {
-                    duration: 20000,
-                    refresh: 1000,
-                    delay: 2000,
-                    onRefresh: onRefresh
-                }
-            }],
-            yAxes: [{
-                scaleLabel: {
-                    display: true,
-                    labelString: 'value'
-                }
-            }]
-        },
-        tooltips: {
-            mode: 'nearest',
-            intersect: false
-        },
-        hover: {
-            mode: 'nearest',
-            intersect: false
-        }
-    };
-
-    var chart_random = new Chart('randomChart', {
-        type: 'line',
-        data: data_random,
-        options: options_random
-    });
 
 
 </script>

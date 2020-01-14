@@ -31,7 +31,7 @@ public class LibraryController {
     private final RespirationService respirationService;
 
     // TODO : Changer l'adresse de la rasberry Pi pour se connecter
-    private final String RASBERRYPI_LOCALHOST = "172.20.10.4";
+    private final String RASBERRYPI_LOCALHOST = "192.168.43.173";
 
     public LibraryController(TemperatureDAO temperatureDAO,
                              PositionDAO positionDAO,
