@@ -55,7 +55,7 @@ public class DataBaseRestController {
                 temperatures.add(map);
             }
         }
-        
+
         return temperatures;
     }
 
@@ -97,12 +97,28 @@ public class DataBaseRestController {
         Iterable<Respiration> str = respirationDAO.findAll();
         ArrayList<Respiration> all_respirations = new ArrayList<>();
         str.forEach(all_respirations::add);
-        for( int i=0; i< all_respirations.size(); i++){
+        if (all_respirations.size()>30) {
+            for( int i=all_respirations.size()-30; i< all_respirations.size(); i++){
+                Map<String, String> map = new TreeMap<>();
+                map.put("date",all_respirations.get(i).getDate());
+                map.put("position", all_respirations.get(i).getAirflow() + "");
+                respirations.add(map);
+            }
+        }
+        else {
+            for( int i=0; i< all_respirations.size(); i++){
+                Map<String, String> map = new TreeMap<>();
+                map.put("date",all_respirations.get(i).getDate());
+                map.put("position", all_respirations.get(i).getAirflow() + "");
+                respirations.add(map);
+            }
+        }
+        /*for( int i=0; i< all_respirations.size(); i++){
             Map<String, String> map = new TreeMap<>();
             map.put("date",all_respirations.get(i).getDate());
             map.put("respiration", all_respirations.get(i).getAirflow() + "");
             respirations.add(map);
-        }
+        }*/
 
         return respirations;
     }
