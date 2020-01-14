@@ -109,7 +109,7 @@ public class DataBaseRestController {
             for( int i=0; i< all_respirations.size(); i++){
                 Map<String, String> map = new TreeMap<>();
                 map.put("date",all_respirations.get(i).getDate());
-                map.put("position", all_respirations.get(i).getAirflow() + "");
+                map.put("respiration", all_respirations.get(i).getAirflow() + "");
                 respirations.add(map);
             }
         }
